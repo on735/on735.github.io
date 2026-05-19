@@ -20,32 +20,53 @@
       margin: 0;
       background: var(--bg);
       color: var(--secondary);
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      height: 100vh;
-
-      overflow: hidden;
-
       font-family: 'Geist Sans', sans-serif;
     }
 
     h1 {
-      position: absolute;
+      position: fixed;
       top: 32px;
       left: 32px;
+      z-index: 10;
 
       margin: 0;
-
       font-size: 28px;
       font-weight: 800;
-
       letter-spacing: -0.03em;
-
       color: var(--secondary);
+    }
+
+    main {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 120px 24px 80px;
+      box-sizing: border-box;
+    }
+
+    .hero {
+      display: none;
+    }
+
+    .intro {
+      max-width: 420px;
+      margin: 0 0 56px;
+      text-align: left;
+      font-size: 15px;
+      line-height: 1.6;
+      letter-spacing: -0.01em;
+      color: var(--secondary);
+      opacity: 0.82;
+    }
+
+    .intro p {
+      margin: 0;
+    }
+
+    .intro p + p {
+      margin-top: 8px;
     }
 
     .odo-wrapper {
@@ -56,37 +77,80 @@
 
     .odo {
       color: var(--primary);
-
       font-size: 120px;
       font-weight: 700;
-
       line-height: 1;
       letter-spacing: -0.05em;
     }
 
     .unit {
       margin-top: 8px;
-
       font-size: 18px;
-
       letter-spacing: 0.08em;
-
       color: var(--secondary);
-
       opacity: 0.8;
     }
 
     .update {
-      position: absolute;
+      position: fixed;
       bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
 
       font-size: 12px;
-
       letter-spacing: 0.2em;
-
       opacity: 0.5;
-
       color: var(--secondary);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 767px) {
+      h1 {
+        top: 24px;
+        left: 24px;
+        font-size: 26px;
+      }
+
+      main {
+        justify-content: flex-start;
+        align-items: stretch;
+        padding: 84px 24px 96px;
+      }
+
+      .hero {
+        display: block;
+        width: 100%;
+        margin-bottom: 24px;
+      }
+
+      .hero img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .intro {
+        max-width: none;
+        margin-bottom: 56px;
+        font-size: 14px;
+      }
+
+      .odo-wrapper {
+        align-items: flex-end;
+      }
+
+      .odo {
+        font-size: 88px;
+      }
+
+      .unit {
+        font-size: 16px;
+      }
+
+      .update {
+        bottom: 24px;
+        font-size: 11px;
+      }
     }
   </style>
 </head>
@@ -95,13 +159,21 @@
 
   <h1>On 735</h1>
 
-  <div class="odo-wrapper">
-    <div class="odo">12,842</div>
-
-    <div class="unit">
-      km
+  <main>
+    <div class="hero">
+      <img src="hero.jpg" alt="On 735 ride visual">
     </div>
-  </div>
+
+    <section class="intro">
+      <p>Daily records while on 735.</p>
+      <p>Movement is automatically logged when the bike is in motion.</p>
+    </section>
+
+    <div class="odo-wrapper">
+      <div class="odo">12,842</div>
+      <div class="unit">km</div>
+    </div>
+  </main>
 
   <div class="update">
     UPDATED 7:35 AM
