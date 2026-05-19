@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>On 735</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist-font@latest/style.css">
+
+  <style>
+    :root {
+      --bg: #000000;
+      --primary: #7e3de5;
+      --secondary: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--secondary);
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      height: 100vh;
+
+      overflow: hidden;
+
+      font-family: 'Geist Sans', sans-serif;
+    }
+
+    h1 {
+      position: absolute;
+      top: 32px;
+      left: 32px;
+
+      margin: 0;
+
+      font-size: 28px;
+      font-weight: 800;
+
+      letter-spacing: -0.03em;
+
+      color: var(--secondary);
+    }
+
+    .odo-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .odo {
+      color: var(--primary);
+
+      font-size: 120px;
+      font-weight: 700;
+
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .unit {
+      margin-top: 8px;
+
+      font-size: 18px;
+
+      letter-spacing: 0.08em;
+
+      color: var(--secondary);
+
+      opacity: 0.8;
+    }
+
+    .update {
+      position: absolute;
+      bottom: 32px;
+
+      font-size: 12px;
+
+      letter-spacing: 0.2em;
+
+      opacity: 0.5;
+
+      color: var(--secondary);
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>On 735</h1>
+
+  <div class="odo-wrapper">
+    <div class="odo">12,842</div>
+
+    <div class="unit">
+      km
+    </div>
+  </div>
+
+  <div class="update">
+    UPDATED 7:35 AM
+  </div>
+
+</body>
+
+</html>
