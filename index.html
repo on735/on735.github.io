@@ -37,7 +37,7 @@
 
     main {
       min-height: 100vh;
-      padding: 120px 48px 96px;
+      padding: 120px 48px 120px;
       box-sizing: border-box;
     }
 
@@ -67,7 +67,8 @@
       margin-left: auto;
     }
 
-    .life-title {
+    .life-title,
+    .me-title {
       text-align: right;
       font-size: 18px;
       font-weight: 700;
@@ -150,13 +151,46 @@
       letter-spacing: -0.04em;
     }
 
+    .me-section {
+      margin-top: 88px;
+    }
+
+    .me-description {
+      text-align: right;
+      font-size: 15px;
+      line-height: 1.7;
+      letter-spacing: -0.01em;
+      color: var(--secondary);
+      opacity: 0.86;
+    }
+
+    .me-description p {
+      margin: 0;
+    }
+
+    .me-description p + p {
+      margin-top: 10px;
+    }
+
+    .me-name {
+      font-weight: 700;
+      opacity: 1;
+    }
+
+    .site-copyright {
+      margin-top: 64px;
+      text-align: right;
+      font-size: 12px;
+      color: var(--secondary);
+      opacity: 0.5;
+    }
+
     .footer {
       position: fixed;
       bottom: 32px;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 32px;
       font-size: 12px;
-      letter-spacing: 0.2em;
+      letter-spacing: 0;
       opacity: 0.5;
       white-space: nowrap;
     }
@@ -169,7 +203,7 @@
       }
 
       main {
-        padding: 88px 0 96px;
+        padding: 88px 0 120px;
       }
 
       .hero {
@@ -208,7 +242,8 @@
       }
 
       .card-title,
-      .life-title {
+      .life-title,
+      .me-title {
         font-size: 17px;
       }
 
@@ -216,8 +251,17 @@
         font-size: 34px;
       }
 
+      .me-section {
+        margin-top: 80px;
+      }
+
+      .me-description {
+        font-size: 14px;
+      }
+
       .footer {
         bottom: 24px;
+        left: 24px;
         font-size: 11px;
       }
     }
@@ -275,6 +319,21 @@
           <div class="metric"><span class="metric-value">611</span><span>km</span></div>
           <div class="metric"><span>Max</span><span class="metric-value">28</span><span>km/h</span></div>
         </div>
+      </div>
+
+      <section class="me-section">
+        <div class="me-title">Me</div>
+        <div class="section-line"></div>
+
+        <div class="me-description">
+          <p class="me-name">Yuto Fukushima</p>
+          <p>I’m a husband, a father and a 735TR rider.</p>
+          <p>As far as I can remember, I've owned and ridden eight different bikes over the past 32 years. Since welcoming my ninth bike, the 735TR, in June 2026, I've been keeping a ride log.</p>
+        </div>
+      </section>
+
+      <div class="site-copyright">
+        ©︎ 2026 Yuto Fukushima
       </div>
     </section>
   </main>
