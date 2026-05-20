@@ -1,1 +1,387 @@
-<h1>Log</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Log | On 735</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist-font@latest/style.css">
+
+  <style>
+    :root {
+      --bg: #000000;
+      --primary: #7e3de5;
+      --secondary: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--secondary);
+      font-family: 'Geist Sans', sans-serif;
+    }
+
+    .site-title {
+      position: fixed;
+      top: 32px;
+      left: 32px;
+      z-index: 10;
+      margin: 0;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .site-title a {
+      color: var(--secondary);
+      text-decoration: none;
+    }
+
+    .desktop-nav {
+      position: fixed;
+      top: 36px;
+      right: 32px;
+      z-index: 10;
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .desktop-nav a,
+    .mobile-menu a {
+      color: var(--secondary);
+      text-decoration: none;
+    }
+
+    .desktop-nav a:hover,
+    .mobile-menu a:hover {
+      color: var(--primary);
+    }
+
+    .menu-button,
+    .mobile-menu {
+      display: none;
+    }
+
+    main {
+      min-height: 100vh;
+      padding: 120px 48px 64px;
+      box-sizing: border-box;
+    }
+
+    .hero {
+      display: none;
+    }
+
+    .content {
+      max-width: 720px;
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .page-title {
+      margin: 0 0 56px;
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .log-table {
+      width: 100%;
+    }
+
+    .log-header,
+    .log-row {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1fr 1fr;
+      column-gap: 24px;
+      align-items: baseline;
+    }
+
+    .log-header {
+      margin-bottom: 16px;
+    }
+
+    .column-title {
+      text-align: right;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .column-line {
+      width: 100%;
+      height: 1px;
+      margin-top: 12px;
+      background: var(--secondary);
+      opacity: 0.35;
+    }
+
+    .log-row {
+      padding: 10px 0;
+      font-size: 14px;
+      line-height: 1.2;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .log-row:last-child {
+      border-bottom: none;
+    }
+
+    .log-row span {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .value {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .footer {
+      margin-top: 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 24px;
+      font-size: 12px;
+      color: var(--secondary);
+      opacity: 0.5;
+    }
+
+    .footer span {
+      white-space: nowrap;
+    }
+
+    @media (max-width: 767px) {
+      .site-title {
+        top: 24px;
+        left: 24px;
+        font-size: 26px;
+      }
+
+      .desktop-nav {
+        display: none;
+      }
+
+      .menu-button {
+        position: fixed;
+        top: 28px;
+        right: 24px;
+        z-index: 20;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 5px;
+        width: 35px;
+        padding: 0;
+        background: none;
+        border: none;
+      }
+
+      .menu-line {
+        height: 2px;
+        background: var(--secondary);
+        transition: 0.2s ease;
+      }
+
+      .menu-line:nth-child(1) { width: 35px; }
+      .menu-line:nth-child(2) { width: 15px; }
+      .menu-line:nth-child(3) { width: 25px; }
+
+      .menu-button.is-open .menu-line:nth-child(1) {
+        width: 28px;
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      .menu-button.is-open .menu-line:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-button.is-open .menu-line:nth-child(3) {
+        width: 28px;
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      .mobile-menu {
+        position: fixed;
+        top: 56px;
+        right: 0;
+        z-index: 15;
+        display: none;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 16px;
+        width: 42vw;
+        padding: 20px 24px 20px 0;
+        box-sizing: border-box;
+        background: rgba(0, 0, 0, 0.8);
+        text-align: right;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .mobile-menu.is-open {
+        display: flex;
+      }
+
+      main {
+        padding: 88px 0 64px;
+      }
+
+      .hero {
+        display: block;
+        width: 100%;
+        margin: 0 0 40px;
+      }
+
+      .hero img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .content {
+        margin: 0 24px;
+      }
+
+      .page-title {
+        font-size: 34px;
+        margin-bottom: 48px;
+      }
+
+      .log-header,
+      .log-row {
+        grid-template-columns: 1.15fr 0.95fr 0.95fr 0.95fr;
+        column-gap: 10px;
+      }
+
+      .column-title {
+        font-size: 10px;
+      }
+
+      .log-row {
+        padding: 9px 0;
+        font-size: 10px;
+      }
+
+      .footer {
+        margin-top: 40px;
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1 class="site-title">
+    <a href="/">On 735</a>
+  </h1>
+
+  <nav class="desktop-nav">
+    <a href="/monitor/">Monitor</a>
+    <a href="/log/">Log</a>
+    <a href="/gears/">Gears</a>
+  </nav>
+
+  <button class="menu-button" aria-label="Open menu">
+    <span class="menu-line"></span>
+    <span class="menu-line"></span>
+    <span class="menu-line"></span>
+  </button>
+
+  <nav class="mobile-menu">
+    <a href="/monitor/">Monitor</a>
+    <a href="/log/">Log</a>
+    <a href="/gears/">Gears</a>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <img src="../LogHero.jpg" alt="On 735 log visual">
+    </div>
+
+    <section class="content">
+      <h1 class="page-title">Log</h1>
+
+      <div class="log-table">
+        <div class="log-header">
+          <div>
+            <div class="column-title">Date</div>
+            <div class="column-line"></div>
+          </div>
+          <div>
+            <div class="column-title">Ride Distance</div>
+            <div class="column-line"></div>
+          </div>
+          <div>
+            <div class="column-title">Max Speed</div>
+            <div class="column-line"></div>
+          </div>
+          <div>
+            <div class="column-title">Avg Speed</div>
+            <div class="column-line"></div>
+          </div>
+        </div>
+
+        <div class="log-row"><span>2026.07.30</span><span class="value">8 km</span><span class="value">28 km/h</span><span class="value">16 km/h</span></div>
+        <div class="log-row"><span>2026.07.29</span><span class="value">0 km</span><span class="value">0 km/h</span><span class="value">0 km/h</span></div>
+        <div class="log-row"><span>2026.07.28</span><span class="value">14 km</span><span class="value">34 km/h</span><span class="value">19 km/h</span></div>
+        <div class="log-row"><span>2026.07.27</span><span class="value">5 km</span><span class="value">22 km/h</span><span class="value">13 km/h</span></div>
+        <div class="log-row"><span>2026.07.26</span><span class="value">21 km</span><span class="value">39 km/h</span><span class="value">21 km/h</span></div>
+        <div class="log-row"><span>2026.07.25</span><span class="value">0 km</span><span class="value">0 km/h</span><span class="value">0 km/h</span></div>
+        <div class="log-row"><span>2026.07.24</span><span class="value">7 km</span><span class="value">27 km/h</span><span class="value">15 km/h</span></div>
+        <div class="log-row"><span>2026.07.23</span><span class="value">12 km</span><span class="value">31 km/h</span><span class="value">18 km/h</span></div>
+        <div class="log-row"><span>2026.07.22</span><span class="value">3 km</span><span class="value">18 km/h</span><span class="value">11 km/h</span></div>
+        <div class="log-row"><span>2026.07.21</span><span class="value">0 km</span><span class="value">0 km/h</span><span class="value">0 km/h</span></div>
+
+        <div class="log-row"><span>2026.07.20</span><span class="value">18 km</span><span class="value">36 km/h</span><span class="value">20 km/h</span></div>
+        <div class="log-row"><span>2026.07.19</span><span class="value">9 km</span><span class="value">30 km/h</span><span class="value">17 km/h</span></div>
+        <div class="log-row"><span>2026.07.18</span><span class="value">0 km</span><span class="value">0 km/h</span><span class="value">0 km/h</span></div>
+        <div class="log-row"><span>2026.07.17</span><span class="value">6 km</span><span class="value">25 km/h</span><span class="value">14 km/h</span></div>
+        <div class="log-row"><span>2026.07.16</span><span class="value">11 km</span><span class="value">33 km/h</span><span class="value">18 km/h</span></div>
+        <div class="log-row"><span>2026.07.15</span><span class="value">4 km</span><span class="value">21 km/h</span><span class="value">12 km/h</span></div>
+        <div class="log-row"><span>2026.07.14</span><span class="value">17 km</span><span class="value">35 km/h</span><span class="value">19 km/h</span></div>
+        <div class="log-row"><span>2026.07.13</span><span class="value">0 km</span><span class="value">0 km/h</span><span class="value">0 km/h</span></div>
+        <div class="log-row"><span>2026.07.12</span><span class="value">23 km</span><span class="value">42 km/h</span><span class="value">22 km/h</span></div>
+        <div class="log-row"><span>2026.07.11</span><span class="value">10 km</span><span class="value">29 km/h</span><span class="value">16 km/h</span></div>
+
+        <div class="log-row"><span>2026.07.10</span><span class="value">0 km</span><span class="value">0 km/h</span><span class="value">0 km/h</span></div>
+        <div class="log-row"><span>2026.07.09</span><span class="value">13 km</span><span class="value">32 km/h</span><span class="value">18 km/h</span></div>
+        <div class="log-row"><span>2026.07.08</span><span class="value">8 km</span><span class="value">26 km/h</span><span class="value">15 km/h</span></div>
+        <div class="log-row"><span>2026.07.07</span><span class="value">0 km</span><span class="value">0 km/h</span><span class="value">0 km/h</span></div>
+        <div class="log-row"><span>2026.07.06</span><span class="value">19 km</span><span class="value">38 km/h</span><span class="value">21 km/h</span></div>
+        <div class="log-row"><span>2026.07.05</span><span class="value">2 km</span><span class="value">16 km/h</span><span class="value">9 km/h</span></div>
+        <div class="log-row"><span>2026.07.04</span><span class="value">15 km</span><span class="value">34 km/h</span><span class="value">19 km/h</span></div>
+        <div class="log-row"><span>2026.07.03</span><span class="value">7 km</span><span class="value">24 km/h</span><span class="value">14 km/h</span></div>
+        <div class="log-row"><span>2026.07.02</span><span class="value">0 km</span><span class="value">0 km/h</span><span class="value">0 km/h</span></div>
+        <div class="log-row"><span>2026.07.01</span><span class="value">16 km</span><span class="value">37 km/h</span><span class="value">20 km/h</span></div>
+      </div>
+
+      <footer class="footer">
+        <span>UPDATED 7:35 AM</span>
+        <span>©︎ 2026 Yuto Fukushima</span>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    const menuButton = document.querySelector('.menu-button');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    menuButton.addEventListener('click', () => {
+      menuButton.classList.toggle('is-open');
+      mobileMenu.classList.toggle('is-open');
+    });
+  </script>
+
+</body>
+
+</html>
