@@ -26,7 +26,7 @@
 
     .site-title {
       position: fixed;
-      top: 32px;
+      top: 28px;
       left: 32px;
       z-index: 10;
       margin: 0;
@@ -47,7 +47,7 @@
 
     .desktop-nav {
       position: fixed;
-      top: 36px;
+      top: 32px;
       right: 32px;
       z-index: 10;
       display: flex;
@@ -77,7 +77,7 @@
 
     main {
       min-height: 100vh;
-      padding: 120px 48px 64px;
+      padding: 104px 48px 64px;
       box-sizing: border-box;
     }
 
@@ -210,18 +210,6 @@
       opacity: 1;
     }
 
-    .fixed-update {
-      position: fixed;
-      bottom: 32px;
-      left: 32px;
-      z-index: 10;
-      font-size: 12px;
-      color: var(--secondary);
-      opacity: 0.5;
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
     .footer {
       margin-top: 40px;
       display: flex;
@@ -238,13 +226,9 @@
       white-space: nowrap;
     }
 
-    .footer-update {
-      visibility: hidden;
-    }
-
     @media (max-width: 767px) {
       .site-title {
-        top: 24px;
+        top: 20px;
         left: 24px;
         font-size: 26px;
       }
@@ -255,7 +239,7 @@
 
       .menu-button {
         position: fixed;
-        top: 28px;
+        top: 24px;
         right: 24px;
         z-index: 20;
         display: flex;
@@ -302,7 +286,7 @@
 
       .mobile-menu {
         position: fixed;
-        top: 56px;
+        top: 52px;
         right: 0;
         z-index: 15;
         display: none;
@@ -323,13 +307,13 @@
       }
 
       main {
-        padding: 88px 0 64px;
+        padding: 76px 0 64px;
       }
 
       .hero {
         display: block;
         width: 100%;
-        margin: 0 0 40px;
+        margin: 0 0 36px;
       }
 
       .hero img {
@@ -384,12 +368,6 @@
         font-size: 14px;
       }
 
-      .fixed-update {
-        bottom: 24px;
-        left: 24px;
-        font-size: 11px;
-      }
-
       .footer {
         margin-top: 32px;
         font-size: 11px;
@@ -425,7 +403,7 @@
   <main>
 
     <div class="hero">
-      <img src="MonitorHero.jpg" alt="On 735 ride visual">
+      <img src="hero.jpg.jpg" alt="On 735 ride visual">
     </div>
 
     <section class="intro">
@@ -483,10 +461,8 @@
         <div class="me-description">
           <p class="me-name">Yuto Fukushima</p>
           <p>I’m a husband, a father and a 735TR rider</p>
-          <p>As far as I can remember,</p>
-          <p>I've ridden 8 different bikes over the past 32 years</p>
-          <p>Since welcoming my 735TR in June 2026,</p>
-          <p>I've been keeping a ride log</p>
+          <p>Riding 8 different bikes over the past 32 years</p>
+          <p>Started this log with my 735TR in June 2026</p>
         </div>
       </section>
 
@@ -498,10 +474,6 @@
     </section>
 
   </main>
-
-  <div class="fixed-update">
-    UPDATED 7:35 AM
-  </div>
 
   <script>
     const menuButton = document.querySelector('.menu-button');
