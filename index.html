@@ -35,6 +35,16 @@
       letter-spacing: -0.03em;
     }
 
+    .site-title a {
+      color: var(--secondary);
+      text-decoration: none;
+    }
+
+    .site-title a:visited,
+    .site-title a:hover {
+      color: var(--secondary);
+    }
+
     .desktop-nav {
       position: fixed;
       top: 36px;
@@ -232,10 +242,6 @@
       visibility: hidden;
     }
 
-    body:has(.footer:hover) .fixed-update {
-      opacity: 0;
-    }
-
     @media (max-width: 767px) {
       .site-title {
         top: 24px;
@@ -394,7 +400,9 @@
 
 <body>
 
-  <h1 class="site-title">On 735</h1>
+  <h1 class="site-title">
+    <a href="/">On 735</a>
+  </h1>
 
   <nav class="desktop-nav">
     <a href="/monitor/">Monitor</a>
