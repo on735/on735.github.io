@@ -97,10 +97,6 @@
       opacity: 0.82;
     }
 
-    .intro p + p {
-      margin-top: 8px;
-    }
-
     .odo-section {
       max-width: 720px;
       margin-left: auto;
@@ -205,19 +201,26 @@
     }
 
     .site-copyright {
-      margin-top: 40px;
       text-align: right;
+      font-size: 12px;
+      color: var(--secondary);
+      opacity: 0.5;
+      white-space: nowrap;
+    }
+
+    .footer {
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 24px;
       font-size: 12px;
       color: var(--secondary);
       opacity: 0.5;
     }
 
-    .footer {
-      position: fixed;
-      bottom: 32px;
-      left: 32px;
-      font-size: 12px;
-      opacity: 0.5;
+    .footer-update,
+    .footer-copy {
       white-space: nowrap;
     }
 
@@ -234,21 +237,22 @@
 
       .menu-button {
         position: fixed;
-        top: 28px;
+        top: 24px;
         right: 24px;
         z-index: 20;
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         align-items: flex-end;
-        gap: 5px;
         width: 35px;
+        height: 26px;
         padding: 0;
         background: none;
         border: none;
       }
 
       .menu-line {
-        height: 2px;
+        height: 1px;
         background: var(--secondary);
         transition: 0.2s ease;
       }
@@ -267,7 +271,7 @@
 
       .menu-button.is-open .menu-line:nth-child(1) {
         width: 28px;
-        transform: translateY(7px) rotate(45deg);
+        transform: translateY(12.5px) rotate(45deg);
       }
 
       .menu-button.is-open .menu-line:nth-child(2) {
@@ -276,20 +280,21 @@
 
       .menu-button.is-open .menu-line:nth-child(3) {
         width: 28px;
-        transform: translateY(-7px) rotate(-45deg);
+        transform: translateY(-12.5px) rotate(-45deg);
       }
 
       .mobile-menu {
         position: fixed;
-        top: 56px;
-        right: 24px;
+        top: 64px;
+        right: 0;
         z-index: 15;
         display: none;
         flex-direction: column;
         align-items: flex-end;
         gap: 16px;
-        padding: 20px 0 20px 32px;
-        min-width: 140px;
+        width: 42vw;
+        padding: 20px 24px 20px 0;
+        box-sizing: border-box;
         background: rgba(0, 0, 0, 0.8);
         text-align: right;
         font-size: 18px;
@@ -363,8 +368,7 @@
       }
 
       .footer {
-        bottom: 24px;
-        left: 24px;
+        margin-top: 32px;
         font-size: 11px;
       }
     }
@@ -401,8 +405,8 @@
 
     <section class="intro">
       <h1 class="page-title">Monitor</h1>
-      <p>Daily records while on 735.</p>
-      <p>Movement is automatically logged when my bike is in motion.</p>
+      <p>Daily records while on 735</p>
+      <p>Movement is automatically logged when my bike is in motion</p>
     </section>
 
     <section class="odo-section">
@@ -453,23 +457,22 @@
 
         <div class="me-description">
           <p class="me-name">Yuto Fukushima</p>
-          <p>I’m a husband, a father and a 735TR rider.</p>
-          <p>As far as I can remember, I've owned and ridden eight different bikes over the past 32 years.</p>
-          <p>Since welcoming my ninth bike, the 735TR, in June 2026, I've been keeping a ride log.</p>
+          <p>I’m a husband, a father and a 735TR rider</p>
+          <p>As far as I can remember,</p>
+          <p>I've ridden 8 different bikes over the past 32 years</p>
+          <p>Since welcoming my 735TR, in June 2026,</p>
+          <p>I've been keeping a ride log</p>
         </div>
       </section>
 
-      <div class="site-copyright">
-        ©︎ 2026 Yuto Fukushima
-      </div>
+      <footer class="footer">
+        <span class="footer-update">UPDATED 7:35 AM</span>
+        <span class="footer-copy">©︎ 2026 Yuto Fukushima</span>
+      </footer>
 
     </section>
 
   </main>
-
-  <footer class="footer">
-    UPDATED 7:35 AM
-  </footer>
 
   <script>
     const menuButton = document.querySelector('.menu-button');
