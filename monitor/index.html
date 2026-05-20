@@ -200,12 +200,16 @@
       opacity: 1;
     }
 
-    .site-copyright {
-      text-align: right;
+    .fixed-update {
+      position: fixed;
+      bottom: 32px;
+      left: 32px;
+      z-index: 10;
       font-size: 12px;
       color: var(--secondary);
       opacity: 0.5;
       white-space: nowrap;
+      pointer-events: none;
     }
 
     .footer {
@@ -224,6 +228,14 @@
       white-space: nowrap;
     }
 
+    .footer-update {
+      visibility: hidden;
+    }
+
+    body:has(.footer:hover) .fixed-update {
+      opacity: 0;
+    }
+
     @media (max-width: 767px) {
       .site-title {
         top: 24px;
@@ -237,22 +249,21 @@
 
       .menu-button {
         position: fixed;
-        top: 24px;
+        top: 28px;
         right: 24px;
         z-index: 20;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
         align-items: flex-end;
+        gap: 5px;
         width: 35px;
-        height: 26px;
         padding: 0;
         background: none;
         border: none;
       }
 
       .menu-line {
-        height: 1px;
+        height: 2px;
         background: var(--secondary);
         transition: 0.2s ease;
       }
@@ -271,7 +282,7 @@
 
       .menu-button.is-open .menu-line:nth-child(1) {
         width: 28px;
-        transform: translateY(12.5px) rotate(45deg);
+        transform: translateY(7px) rotate(45deg);
       }
 
       .menu-button.is-open .menu-line:nth-child(2) {
@@ -280,12 +291,12 @@
 
       .menu-button.is-open .menu-line:nth-child(3) {
         width: 28px;
-        transform: translateY(-12.5px) rotate(-45deg);
+        transform: translateY(-7px) rotate(-45deg);
       }
 
       .mobile-menu {
         position: fixed;
-        top: 64px;
+        top: 56px;
         right: 0;
         z-index: 15;
         display: none;
@@ -365,6 +376,12 @@
 
       .me-description {
         font-size: 14px;
+      }
+
+      .fixed-update {
+        bottom: 24px;
+        left: 24px;
+        font-size: 11px;
       }
 
       .footer {
@@ -460,7 +477,7 @@
           <p>I’m a husband, a father and a 735TR rider</p>
           <p>As far as I can remember,</p>
           <p>I've ridden 8 different bikes over the past 32 years</p>
-          <p>Since welcoming my 735TR, in June 2026,</p>
+          <p>Since welcoming my 735TR in June 2026,</p>
           <p>I've been keeping a ride log</p>
         </div>
       </section>
@@ -473,6 +490,10 @@
     </section>
 
   </main>
+
+  <div class="fixed-update">
+    UPDATED 7:35 AM
+  </div>
 
   <script>
     const menuButton = document.querySelector('.menu-button');
