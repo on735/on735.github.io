@@ -1,1 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>On 735</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist-font@latest/style.css">
+
+  <style>
+    :root {
+      --bg: #000000;
+      --primary: #7e3de5;
+      --secondary: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--secondary);
+      font-family: 'Geist Sans', sans-serif;
+    }
+
+    h1 {
+      position: fixed;
+      top: 32px;
+      left: 32px;
+      z-index: 10;
+      margin: 0;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    main {
+      min-height: 100vh;
+      padding: 120px 48px 120px;
+      box-sizing: border-box;
+    }
+
+    .hero {
+      display: none;
+    }
+
+    .intro {
+      max-width: 720px;
+      margin: 0 0 72px;
+      font-size: 15px;
+      line-height: 1.6;
+      letter-spacing: -0.01em;
+      opacity: 0.82;
+    }
+
+    .intro p {
+      margin: 0;
+    }
+
+    .intro p + p {
+      margin-top: 8px;
+    }
+
+    .odo-section {
+      max-width: 720px;
+      margin-left: auto;
+    }
+
+    .life-title,
+    .me-title {
+      text-align: right;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--secondary);
+    }
+
+    .section-line {
+      width: 100%;
+      height: 1px;
+      margin: 16px 0 24px;
+      background: var(--secondary);
+      opacity: 0.35;
+    }
+
+    .odo-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .odo {
+      color: var(--primary);
+      font-size: 120px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .unit {
+      margin-top: 8px;
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      color: var(--secondary);
+      opacity: 0.8;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-top: 72px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card-title {
+      text-align: right;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--secondary);
+      letter-spacing: -0.01em;
+    }
+
+    .card-line {
+      width: 100%;
+      height: 1px;
+      margin: 2px 0 8px;
+      background: var(--secondary);
+      opacity: 0.35;
+    }
+
+    .metric {
+      display: flex;
+      justify-content: flex-end;
+      align-items: baseline;
+      gap: 6px;
+      font-size: 14px;
+      color: var(--secondary);
+    }
+
+    .metric-value {
+      color: var(--primary);
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    .me-section {
+      margin-top: 88px;
+    }
+
+    .me-description {
+      text-align: right;
+      font-size: 15px;
+      line-height: 1.7;
+      letter-spacing: -0.01em;
+      color: var(--secondary);
+      opacity: 0.86;
+    }
+
+    .me-description p {
+      margin: 0;
+    }
+
+    .me-description p + p {
+      margin-top: 10px;
+    }
+
+    .me-name {
+      font-weight: 700;
+      opacity: 1;
+    }
+
+    .site-copyright {
+      margin-top: 64px;
+      text-align: right;
+      font-size: 12px;
+      color: var(--secondary);
+      opacity: 0.5;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 32px;
+      left: 32px;
+      font-size: 12px;
+      letter-spacing: 0;
+      opacity: 0.5;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 767px) {
+      h1 {
+        top: 24px;
+        left: 24px;
+        font-size: 26px;
+      }
+
+      main {
+        padding: 88px 0 120px;
+      }
+
+      .hero {
+        display: block;
+        width: 100%;
+        margin: 0 0 40px;
+      }
+
+      .hero img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .intro {
+        margin: 0 24px 72px;
+        font-size: 14px;
+      }
+
+      .odo-section {
+        margin: 0 24px;
+      }
+
+      .odo {
+        font-size: 88px;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 48px 28px;
+        margin-top: 64px;
+      }
+
+      .card {
+        padding: 0 4px;
+      }
+
+      .card-title,
+      .life-title,
+      .me-title {
+        font-size: 17px;
+      }
+
+      .metric-value {
+        font-size: 34px;
+      }
+
+      .me-section {
+        margin-top: 80px;
+      }
+
+      .me-description {
+        font-size: 14px;
+      }
+
+      .footer {
+        bottom: 24px;
+        left: 24px;
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>On 735</h1>
+
+  <main>
+    <div class="hero">
+      <img src="hero.jpg.jpg" alt="On 735 ride visual">
+    </div>
+
+    <section class="intro">
+      <p>Daily records while on 735.</p>
+      <p>Movement is automatically logged when my bike is in motion.</p>
+    </section>
+
+    <section class="odo-section">
+      <div class="life-title">Life latest</div>
+      <div class="section-line"></div>
+
+      <div class="odo-wrapper">
+        <div class="odo">12,842</div>
+        <div class="unit">km</div>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">Daily</div>
+          <div class="card-line"></div>
+          <div class="metric"><span class="metric-value">5</span><span>km</span></div>
+          <div class="metric"><span>Max</span><span class="metric-value">12</span><span>km/h</span></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Weekly</div>
+          <div class="card-line"></div>
+          <div class="metric"><span class="metric-value">18</span><span>km</span></div>
+          <div class="metric"><span>Max</span><span class="metric-value">15</span><span>km/h</span></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Monthly</div>
+          <div class="card-line"></div>
+          <div class="metric"><span class="metric-value">67</span><span>km</span></div>
+          <div class="metric"><span>Max</span><span class="metric-value">15</span><span>km/h</span></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Yearly</div>
+          <div class="card-line"></div>
+          <div class="metric"><span class="metric-value">611</span><span>km</span></div>
+          <div class="metric"><span>Max</span><span class="metric-value">28</span><span>km/h</span></div>
+        </div>
+      </div>
+
+      <section class="me-section">
+        <div class="me-title">Me</div>
+        <div class="section-line"></div>
+
+        <div class="me-description">
+          <p class="me-name">Yuto Fukushima</p>
+          <p>I’m a husband, a father and a 735TR rider.</p>
+          <p>As far as I can remember, I've owned and ridden eight different bikes over the past 32 years. Since welcoming my ninth bike, the 735TR, in June 2026, I've been keeping a ride log.</p>
+        </div>
+      </section>
+
+      <div class="site-copyright">
+        ©︎ 2026 Yuto Fukushima
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    UPDATED 7:35 AM
+  </footer>
+
+</body>
+
+</html>
