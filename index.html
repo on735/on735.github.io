@@ -7,6 +7,7 @@
 
   <title>On 735</title>
   <meta name="robots" content="noindex, nofollow">
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist-font@latest/style.css">
 
   <style>
@@ -28,21 +29,15 @@
       top: 32px;
       left: 32px;
       z-index: 10;
-
       margin: 0;
       font-size: 28px;
       font-weight: 800;
       letter-spacing: -0.03em;
-      color: var(--secondary);
     }
 
     main {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 120px 24px 80px;
+      padding: 120px 48px 96px;
       box-sizing: border-box;
     }
 
@@ -51,13 +46,11 @@
     }
 
     .intro {
-      max-width: 420px;
-      margin: 0 0 56px;
-      text-align: left;
+      max-width: 720px;
+      margin: 0 0 72px;
       font-size: 15px;
       line-height: 1.6;
       letter-spacing: -0.01em;
-      color: var(--secondary);
       opacity: 0.82;
     }
 
@@ -67,6 +60,11 @@
 
     .intro p + p {
       margin-top: 8px;
+    }
+
+    .odo-section {
+      max-width: 720px;
+      margin-left: auto;
     }
 
     .odo-wrapper {
@@ -83,24 +81,68 @@
       letter-spacing: -0.05em;
     }
 
-    .unit {
-      margin-top: 8px;
-      font-size: 18px;
-      letter-spacing: 0.08em;
-      color: var(--secondary);
-      opacity: 0.8;
+    .odo-line {
+      width: 100%;
+      height: 1px;
+      margin: 20px 0 14px;
+      background: var(--secondary);
+      opacity: 0.35;
     }
 
-    .update {
+    .life-label {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      color: var(--secondary);
+      opacity: 0.9;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-top: 56px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--secondary);
+      opacity: 0.82;
+    }
+
+    .metric {
+      display: flex;
+      justify-content: flex-end;
+      align-items: baseline;
+      gap: 6px;
+      font-size: 14px;
+      color: var(--secondary);
+    }
+
+    .metric-value {
+      color: var(--primary);
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    .footer {
       position: fixed;
       bottom: 32px;
       left: 50%;
       transform: translateX(-50%);
-
       font-size: 12px;
       letter-spacing: 0.2em;
       opacity: 0.5;
-      color: var(--secondary);
       white-space: nowrap;
     }
 
@@ -112,15 +154,13 @@
       }
 
       main {
-        justify-content: flex-start;
-        align-items: stretch;
-        padding: 84px 24px 96px;
+        padding: 88px 0 96px;
       }
 
       .hero {
         display: block;
         width: 100%;
-        margin-bottom: 24px;
+        margin: 0 0 40px;
       }
 
       .hero img {
@@ -130,24 +170,29 @@
       }
 
       .intro {
-        max-width: none;
-        margin-bottom: 56px;
+        margin: 0 24px 72px;
         font-size: 14px;
       }
 
-      .odo-wrapper {
-        align-items: flex-end;
+      .odo-section {
+        margin: 0 24px;
       }
 
       .odo {
         font-size: 88px;
       }
 
-      .unit {
-        font-size: 16px;
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 36px 28px;
+        margin-top: 56px;
       }
 
-      .update {
+      .metric-value {
+        font-size: 24px;
+      }
+
+      .footer {
         bottom: 24px;
         font-size: 11px;
       }
@@ -169,15 +214,49 @@
       <p>Movement is automatically logged when the bike is in motion.</p>
     </section>
 
-    <div class="odo-wrapper">
-      <div class="odo">12,842</div>
-      <div class="unit">km</div>
-    </div>
+    <section class="odo-section">
+      <div class="odo-wrapper">
+        <div class="odo">12,842</div>
+
+        <div class="odo-line"></div>
+
+        <div class="life-label">
+          <span>Life latest</span>
+          <span>km</span>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">Daily</div>
+          <div class="metric"><span class="metric-value">5</span><span>km</span></div>
+          <div class="metric"><span class="metric-value">12</span><span>km/h</span></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Weekly</div>
+          <div class="metric"><span class="metric-value">18</span><span>km</span></div>
+          <div class="metric"><span class="metric-value">15</span><span>km/h</span></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Monthly</div>
+          <div class="metric"><span class="metric-value">67</span><span>km</span></div>
+          <div class="metric"><span class="metric-value">15</span><span>km/h</span></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Yearly</div>
+          <div class="metric"><span class="metric-value">611</span><span>km</span></div>
+          <div class="metric"><span class="metric-value">28</span><span>km/h</span></div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <div class="update">
+  <footer class="footer">
     UPDATED 7:35 AM
-  </div>
+  </footer>
 
 </body>
 
