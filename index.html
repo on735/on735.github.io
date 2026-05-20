@@ -67,6 +67,22 @@
       margin-left: auto;
     }
 
+    .life-title {
+      text-align: right;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--secondary);
+    }
+
+    .section-line {
+      width: 100%;
+      height: 1px;
+      margin: 16px 0 24px;
+      background: var(--secondary);
+      opacity: 0.35;
+    }
+
     .odo-wrapper {
       display: flex;
       flex-direction: column;
@@ -81,29 +97,19 @@
       letter-spacing: -0.05em;
     }
 
-    .odo-line {
-      width: 100%;
-      height: 1px;
-      margin: 20px 0 14px;
-      background: var(--secondary);
-      opacity: 0.35;
-    }
-
-    .life-label {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      font-size: 14px;
-      letter-spacing: 0.02em;
+    .unit {
+      margin-top: 8px;
+      font-size: 18px;
+      letter-spacing: 0.08em;
       color: var(--secondary);
-      opacity: 0.9;
+      opacity: 0.8;
     }
 
     .cards {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 32px;
-      margin-top: 56px;
+      margin-top: 72px;
     }
 
     .card {
@@ -113,10 +119,19 @@
     }
 
     .card-title {
-      font-size: 14px;
-      font-weight: 500;
+      text-align: right;
+      font-size: 18px;
+      font-weight: 700;
       color: var(--secondary);
-      opacity: 0.82;
+      letter-spacing: -0.01em;
+    }
+
+    .card-line {
+      width: 100%;
+      height: 1px;
+      margin: 2px 0 8px;
+      background: var(--secondary);
+      opacity: 0.35;
     }
 
     .metric {
@@ -184,8 +199,17 @@
 
       .cards {
         grid-template-columns: repeat(2, 1fr);
-        gap: 36px 28px;
-        margin-top: 56px;
+        gap: 48px 28px;
+        margin-top: 64px;
+      }
+
+      .card {
+        padding: 0 4px;
+      }
+
+      .card-title,
+      .life-title {
+        font-size: 17px;
       }
 
       .metric-value {
@@ -215,38 +239,39 @@
     </section>
 
     <section class="odo-section">
+      <div class="life-title">Life latest</div>
+      <div class="section-line"></div>
+
       <div class="odo-wrapper">
         <div class="odo">12,842</div>
-
-        <div class="odo-line"></div>
-
-        <div class="life-label">
-          <span>Life latest</span>
-          <span>km</span>
-        </div>
+        <div class="unit">km</div>
       </div>
 
       <div class="cards">
         <div class="card">
           <div class="card-title">Daily</div>
+          <div class="card-line"></div>
           <div class="metric"><span class="metric-value">5</span><span>km</span></div>
           <div class="metric"><span class="metric-value">12</span><span>km/h</span></div>
         </div>
 
         <div class="card">
           <div class="card-title">Weekly</div>
+          <div class="card-line"></div>
           <div class="metric"><span class="metric-value">18</span><span>km</span></div>
           <div class="metric"><span class="metric-value">15</span><span>km/h</span></div>
         </div>
 
         <div class="card">
           <div class="card-title">Monthly</div>
+          <div class="card-line"></div>
           <div class="metric"><span class="metric-value">67</span><span>km</span></div>
           <div class="metric"><span class="metric-value">15</span><span>km/h</span></div>
         </div>
 
         <div class="card">
           <div class="card-title">Yearly</div>
+          <div class="card-line"></div>
           <div class="metric"><span class="metric-value">611</span><span>km</span></div>
           <div class="metric"><span class="metric-value">28</span><span>km/h</span></div>
         </div>
