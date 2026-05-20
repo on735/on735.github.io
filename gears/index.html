@@ -1,1 +1,295 @@
-<h1>Gears</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Gears | On 735</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist-font@latest/style.css">
+
+  <style>
+    :root {
+      --bg: #000000;
+      --primary: #7e3de5;
+      --secondary: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--secondary);
+      font-family: 'Geist Sans', sans-serif;
+    }
+
+    .site-title {
+      position: fixed;
+      top: 32px;
+      left: 32px;
+      z-index: 10;
+      margin: 0;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .site-title a {
+      color: var(--secondary);
+      text-decoration: none;
+    }
+
+    .site-title a:visited,
+    .site-title a:hover {
+      color: var(--secondary);
+    }
+
+    .desktop-nav {
+      position: fixed;
+      top: 36px;
+      right: 32px;
+      z-index: 10;
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .desktop-nav a,
+    .mobile-menu a {
+      color: var(--secondary);
+      text-decoration: none;
+    }
+
+    .desktop-nav a:hover,
+    .mobile-menu a:hover {
+      color: var(--primary);
+    }
+
+    .menu-button {
+      display: none;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    main {
+      min-height: 100vh;
+      padding: 120px 48px 64px;
+      box-sizing: border-box;
+    }
+
+    .content {
+      max-width: 720px;
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .page-title {
+      margin: 0 0 40px;
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .gear-title {
+      margin: 0 0 20px;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .gear-image {
+      width: 100%;
+    }
+
+    .gear-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .footer {
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 24px;
+      font-size: 12px;
+      color: var(--secondary);
+      opacity: 0.5;
+    }
+
+    .footer span {
+      white-space: nowrap;
+    }
+
+    @media (max-width: 767px) {
+
+      .site-title {
+        top: 24px;
+        left: 24px;
+        font-size: 26px;
+      }
+
+      .desktop-nav {
+        display: none;
+      }
+
+      .menu-button {
+        position: fixed;
+        top: 28px;
+        right: 24px;
+        z-index: 20;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 5px;
+        width: 35px;
+        padding: 0;
+        background: none;
+        border: none;
+      }
+
+      .menu-line {
+        height: 2px;
+        background: var(--secondary);
+        transition: 0.2s ease;
+      }
+
+      .menu-line:nth-child(1) {
+        width: 35px;
+      }
+
+      .menu-line:nth-child(2) {
+        width: 15px;
+      }
+
+      .menu-line:nth-child(3) {
+        width: 25px;
+      }
+
+      .menu-button.is-open .menu-line:nth-child(1) {
+        width: 28px;
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      .menu-button.is-open .menu-line:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-button.is-open .menu-line:nth-child(3) {
+        width: 28px;
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      .mobile-menu {
+        position: fixed;
+        top: 56px;
+        right: 0;
+        z-index: 15;
+        display: none;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 16px;
+        width: 42vw;
+        padding: 20px 24px 20px 0;
+        box-sizing: border-box;
+        background: rgba(0, 0, 0, 0.8);
+        text-align: right;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .mobile-menu.is-open {
+        display: flex;
+      }
+
+      main {
+        padding: 88px 0 64px;
+      }
+
+      .content {
+        margin: 0 24px;
+      }
+
+      .page-title {
+        font-size: 34px;
+        margin-bottom: 32px;
+      }
+
+      .gear-title {
+        font-size: 17px;
+        margin-bottom: 18px;
+      }
+
+      .footer {
+        margin-top: 32px;
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1 class="site-title">
+    <a href="/">On 735</a>
+  </h1>
+
+  <nav class="desktop-nav">
+    <a href="/monitor/">Monitor</a>
+    <a href="/log/">Log</a>
+    <a href="/gears/">Gears</a>
+  </nav>
+
+  <button class="menu-button" aria-label="Open menu">
+    <span class="menu-line"></span>
+    <span class="menu-line"></span>
+    <span class="menu-line"></span>
+  </button>
+
+  <nav class="mobile-menu">
+    <a href="/monitor/">Monitor</a>
+    <a href="/log/">Log</a>
+    <a href="/gears/">Gears</a>
+  </nav>
+
+  <main>
+
+    <section class="content">
+
+      <h1 class="page-title">Gears</h1>
+
+      <h2 class="gear-title">LEADER 735TR</h2>
+
+      <div class="gear-image">
+        <img src="GearsSample.jpg" alt="LEADER 735TR">
+      </div>
+
+      <footer class="footer">
+        <span>UPDATED 7:35 AM</span>
+        <span>©︎ 2026 Yuto Fukushima</span>
+      </footer>
+
+    </section>
+
+  </main>
+
+  <script>
+    const menuButton = document.querySelector('.menu-button');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    menuButton.addEventListener('click', () => {
+      menuButton.classList.toggle('is-open');
+      mobileMenu.classList.toggle('is-open');
+    });
+  </script>
+
+</body>
+
+</html>
