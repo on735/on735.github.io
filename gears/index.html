@@ -203,10 +203,17 @@
     .footer {
       margin-top: 40px;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 24px;
       font-size: 12px;
       color: var(--secondary);
       opacity: 0.5;
+    }
+
+    .footer-update,
+    .footer-copy {
+      white-space: nowrap;
     }
 
     @media (max-width: 767px) {
@@ -378,7 +385,7 @@
     <section class="content">
 
       <h1 class="page-title">Gears</h1>
-      <p class="page-description">Maintained right, ridden longer</p>
+      <p class="page-description">Tracking maintenance timing</p>
 
       <section class="gear-section">
 
@@ -439,7 +446,8 @@
       </section>
 
       <footer class="footer">
-        <span>©︎ 2026 Yuto Fukushima</span>
+        <span class="footer-update">UPDATED 7:35 AM</span>
+        <span class="footer-copy">©︎ 2026 Yuto Fukushima</span>
       </footer>
 
     </section>
