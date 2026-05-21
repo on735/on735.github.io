@@ -85,11 +85,19 @@
     }
 
     .page-title {
-      margin: 0 0 40px;
+      margin: 0 0 16px;
       font-size: 40px;
       font-weight: 800;
       letter-spacing: -0.04em;
       line-height: 1;
+    }
+
+    .page-description {
+      margin: 0 0 48px;
+      font-size: 15px;
+      line-height: 1.6;
+      letter-spacing: -0.01em;
+      opacity: 0.82;
     }
 
     .gear-section {
@@ -152,9 +160,16 @@
     }
 
     .life-bar-fill {
-      width: 48%;
       height: 100%;
       background: var(--primary);
+    }
+
+    .life-bar-fill.frame {
+      width: 16%;
+    }
+
+    .life-bar-fill.wheel {
+      width: 48%;
     }
 
     .life-status {
@@ -165,11 +180,17 @@
       line-height: 1;
     }
 
-    .life-percent {
+    .life-percent-number {
       color: var(--primary);
       font-size: 24px;
       font-weight: 700;
       letter-spacing: -0.03em;
+    }
+
+    .life-percent-mark {
+      color: var(--secondary);
+      font-size: 14px;
+      opacity: 0.82;
     }
 
     .life-text {
@@ -278,7 +299,12 @@
 
       .page-title {
         font-size: 34px;
-        margin-bottom: 32px;
+        margin-bottom: 14px;
+      }
+
+      .page-description {
+        font-size: 14px;
+        margin-bottom: 40px;
       }
 
       .gear-section {
@@ -302,8 +328,12 @@
         width: 200px;
       }
 
-      .life-percent {
+      .life-percent-number {
         font-size: 22px;
+      }
+
+      .life-percent-mark {
+        font-size: 13px;
       }
 
       .life-text {
@@ -346,12 +376,30 @@
     <section class="content">
 
       <h1 class="page-title">Gears</h1>
+      <p class="page-description">Maintained right, ridden longer</p>
 
       <section class="gear-section">
         <h2 class="gear-title">LEADER 735TR</h2>
 
         <div class="gear-image">
           <img src="../GearsSample.JPG" alt="LEADER 735TR">
+        </div>
+
+        <div class="gear-meta">
+          <div class="gear-distance">
+            <span class="gear-distance-used">4,824</span>
+            <span class="gear-distance-total">/ 30,000 km</span>
+          </div>
+
+          <div class="life-bar">
+            <div class="life-bar-fill frame"></div>
+          </div>
+
+          <div class="life-status">
+            <span class="life-percent-number">16</span>
+            <span class="life-percent-mark">%</span>
+            <span class="life-text">used toward replacement</span>
+          </div>
         </div>
       </section>
 
@@ -369,11 +417,12 @@
           </div>
 
           <div class="life-bar">
-            <div class="life-bar-fill"></div>
+            <div class="life-bar-fill wheel"></div>
           </div>
 
           <div class="life-status">
-            <span class="life-percent">48%</span>
+            <span class="life-percent-number">48</span>
+            <span class="life-percent-mark">%</span>
             <span class="life-text">used toward replacement</span>
           </div>
         </div>
