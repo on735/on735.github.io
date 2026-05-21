@@ -122,60 +122,39 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 18px;
+      gap: 14px;
     }
 
-    .meta-block {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 4px;
-    }
-
-    .meta-label {
+    .gear-meta-label {
       font-size: 13px;
       letter-spacing: 0.02em;
       opacity: 0.55;
     }
 
-    .meta-value {
-      font-size: 24px;
-      line-height: 1;
-      letter-spacing: -0.03em;
-      color: var(--primary);
-    }
-
-    .meta-note {
-      font-size: 12px;
-      opacity: 0.45;
-      letter-spacing: 0.03em;
-    }
-
-    .life-bar-block {
-      width: 100%;
-      max-width: 320px;
+    .gear-distance {
       display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 10px;
-    }
-
-    .life-bar-label {
-      font-size: 13px;
-      letter-spacing: 0.02em;
-      opacity: 0.55;
-    }
-
-    .life-bar-row {
-      display: flex;
-      align-items: center;
       justify-content: flex-end;
-      gap: 12px;
-      width: 100%;
+      align-items: baseline;
+      gap: 6px;
+      line-height: 1;
+    }
+
+    .gear-distance-used {
+      color: var(--primary);
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .gear-distance-total {
+      color: var(--secondary);
+      font-size: 16px;
+      font-weight: 400;
+      opacity: 0.82;
     }
 
     .life-bar {
-      width: 220px;
+      width: 240px;
       height: 4px;
       background: rgba(255, 255, 255, 0.12);
       position: relative;
@@ -186,15 +165,23 @@
       position: absolute;
       top: 0;
       right: 0;
-      width: 80%;
+      width: 48%;
       height: 100%;
       background: var(--primary);
     }
 
     .life-percent {
-      font-size: 14px;
-      letter-spacing: -0.01em;
-      color: var(--secondary);
+      color: var(--primary);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .gear-started {
+      font-size: 12px;
+      opacity: 0.48;
+      letter-spacing: 0.02em;
     }
 
     .footer {
@@ -309,12 +296,16 @@
         margin-bottom: 18px;
       }
 
-      .meta-value {
-        font-size: 22px;
+      .gear-distance-used {
+        font-size: 30px;
+      }
+
+      .gear-distance-total {
+        font-size: 15px;
       }
 
       .life-bar {
-        width: 180px;
+        width: 200px;
       }
 
       .footer {
@@ -375,23 +366,20 @@
 
         <div class="gear-meta">
 
-          <div class="meta-block">
-            <div class="meta-label">Distance used</div>
-            <div class="meta-value">4,842 / 10,000 km</div>
-            <div class="meta-note">recommended</div>
+          <div class="gear-meta-label">Distance used / Gear life recommended</div>
+
+          <div class="gear-distance">
+            <span class="gear-distance-used">4,842</span>
+            <span class="gear-distance-total">/ 10,000 km</span>
           </div>
 
-          <div class="life-bar-block">
-            <div class="life-bar-label">Gear life</div>
-
-            <div class="life-bar-row">
-              <div class="life-bar">
-                <div class="life-bar-fill"></div>
-              </div>
-
-              <div class="life-percent">48%</div>
-            </div>
+          <div class="life-bar">
+            <div class="life-bar-fill"></div>
           </div>
+
+          <div class="life-percent">48%</div>
+
+          <div class="gear-started">In use since 2026.06.06</div>
 
         </div>
 
