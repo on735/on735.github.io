@@ -67,10 +67,7 @@
       color: var(--primary);
     }
 
-    .menu-button {
-      display: none;
-    }
-
+    .menu-button,
     .mobile-menu {
       display: none;
     }
@@ -122,16 +119,45 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 14px;
-    }
-
-    .gear-meta-label {
-      font-size: 13px;
-      letter-spacing: 0.02em;
-      opacity: 0.55;
+      gap: 18px;
     }
 
     .gear-distance {
+      display: flex;
+      justify-content: flex-end;
+      align-items: baseline;
+      gap: 8px;
+      line-height: 1;
+    }
+
+    .gear-distance-used {
+      color: var(--primary);
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+    }
+
+    .gear-distance-total {
+      color: var(--secondary);
+      font-size: 16px;
+      opacity: 0.82;
+      letter-spacing: -0.01em;
+    }
+
+    .life-bar {
+      width: 240px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+    }
+
+    .life-bar-fill {
+      width: 48%;
+      height: 100%;
+      background: var(--primary);
+    }
+
+    .life-status {
       display: flex;
       justify-content: flex-end;
       align-items: baseline;
@@ -139,49 +165,18 @@
       line-height: 1;
     }
 
-    .gear-distance-used {
-      color: var(--primary);
-      font-size: 32px;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-    }
-
-    .gear-distance-total {
-      color: var(--secondary);
-      font-size: 16px;
-      font-weight: 400;
-      opacity: 0.82;
-    }
-
-    .life-bar {
-      width: 240px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.12);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .life-bar-fill {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 48%;
-      height: 100%;
-      background: var(--primary);
-    }
-
     .life-percent {
       color: var(--primary);
-      font-size: 20px;
+      font-size: 24px;
       font-weight: 700;
       letter-spacing: -0.03em;
-      line-height: 1;
     }
 
-    .gear-started {
-      font-size: 12px;
-      opacity: 0.48;
-      letter-spacing: 0.02em;
+    .life-text {
+      font-size: 13px;
+      color: var(--secondary);
+      opacity: 0.55;
+      letter-spacing: 0.01em;
     }
 
     .footer {
@@ -194,7 +189,6 @@
     }
 
     @media (max-width: 767px) {
-
       .site-title {
         top: 20px;
         left: 24px;
@@ -297,7 +291,7 @@
       }
 
       .gear-distance-used {
-        font-size: 30px;
+        font-size: 34px;
       }
 
       .gear-distance-total {
@@ -306,6 +300,14 @@
 
       .life-bar {
         width: 200px;
+      }
+
+      .life-percent {
+        font-size: 22px;
+      }
+
+      .life-text {
+        font-size: 12px;
       }
 
       .footer {
@@ -341,23 +343,19 @@
   </nav>
 
   <main>
-
     <section class="content">
 
       <h1 class="page-title">Gears</h1>
 
       <section class="gear-section">
-
         <h2 class="gear-title">LEADER 735TR</h2>
 
         <div class="gear-image">
           <img src="../GearsSample.JPG" alt="LEADER 735TR">
         </div>
-
       </section>
 
       <section class="gear-section">
-
         <h2 class="gear-title">H PLUS SON Archetype</h2>
 
         <div class="gear-image">
@@ -365,9 +363,6 @@
         </div>
 
         <div class="gear-meta">
-
-          <div class="gear-meta-label">Distance used / Gear life recommended</div>
-
           <div class="gear-distance">
             <span class="gear-distance-used">4,842</span>
             <span class="gear-distance-total">/ 10,000 km</span>
@@ -377,12 +372,11 @@
             <div class="life-bar-fill"></div>
           </div>
 
-          <div class="life-percent">48%</div>
-
-          <div class="gear-started">In use since 2026.06.06</div>
-
+          <div class="life-status">
+            <span class="life-percent">48%</span>
+            <span class="life-text">used toward replacement</span>
+          </div>
         </div>
-
       </section>
 
       <footer class="footer">
@@ -390,7 +384,6 @@
       </footer>
 
     </section>
-
   </main>
 
   <script>
