@@ -26,7 +26,7 @@
 
     .site-title {
       position: fixed;
-      top: 32px;
+      top: 28px;
       left: 32px;
       z-index: 10;
       margin: 0;
@@ -47,7 +47,7 @@
 
     .desktop-nav {
       position: fixed;
-      top: 36px;
+      top: 32px;
       right: 32px;
       z-index: 10;
       display: flex;
@@ -77,7 +77,7 @@
 
     main {
       min-height: 100vh;
-      padding: 120px 48px 64px;
+      padding: 104px 48px 64px;
       box-sizing: border-box;
     }
 
@@ -95,6 +95,10 @@
       line-height: 1;
     }
 
+    .gear-section {
+      margin-bottom: 88px;
+    }
+
     .gear-title {
       margin: 0 0 20px;
       font-size: 18px;
@@ -105,12 +109,92 @@
 
     .gear-image {
       width: 100%;
+      margin-bottom: 28px;
     }
 
     .gear-image img {
       width: 100%;
       height: auto;
       display: block;
+    }
+
+    .gear-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 18px;
+    }
+
+    .meta-block {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .meta-label {
+      font-size: 13px;
+      letter-spacing: 0.02em;
+      opacity: 0.55;
+    }
+
+    .meta-value {
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--primary);
+    }
+
+    .meta-note {
+      font-size: 12px;
+      opacity: 0.45;
+      letter-spacing: 0.03em;
+    }
+
+    .life-bar-block {
+      width: 100%;
+      max-width: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+    }
+
+    .life-bar-label {
+      font-size: 13px;
+      letter-spacing: 0.02em;
+      opacity: 0.55;
+    }
+
+    .life-bar-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .life-bar {
+      width: 220px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .life-bar-fill {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 80%;
+      height: 100%;
+      background: var(--primary);
+    }
+
+    .life-percent {
+      font-size: 14px;
+      letter-spacing: -0.01em;
+      color: var(--secondary);
     }
 
     .footer {
@@ -125,7 +209,7 @@
     @media (max-width: 767px) {
 
       .site-title {
-        top: 24px;
+        top: 20px;
         left: 24px;
         font-size: 26px;
       }
@@ -136,7 +220,7 @@
 
       .menu-button {
         position: fixed;
-        top: 28px;
+        top: 24px;
         right: 24px;
         z-index: 20;
         display: flex;
@@ -183,7 +267,7 @@
 
       .mobile-menu {
         position: fixed;
-        top: 56px;
+        top: 52px;
         right: 0;
         z-index: 15;
         display: none;
@@ -204,7 +288,7 @@
       }
 
       main {
-        padding: 88px 0 64px;
+        padding: 76px 0 64px;
       }
 
       .content {
@@ -216,9 +300,21 @@
         margin-bottom: 32px;
       }
 
+      .gear-section {
+        margin-bottom: 72px;
+      }
+
       .gear-title {
         font-size: 17px;
         margin-bottom: 18px;
+      }
+
+      .meta-value {
+        font-size: 22px;
+      }
+
+      .life-bar {
+        width: 180px;
       }
 
       .footer {
@@ -259,11 +355,47 @@
 
       <h1 class="page-title">Gears</h1>
 
-      <h2 class="gear-title">LEADER 735TR</h2>
+      <section class="gear-section">
 
-      <div class="gear-image">
-        <img src="../GearsSample.JPG" alt="LEADER 735TR">
-      </div>
+        <h2 class="gear-title">LEADER 735TR</h2>
+
+        <div class="gear-image">
+          <img src="../GearsSample.JPG" alt="LEADER 735TR">
+        </div>
+
+      </section>
+
+      <section class="gear-section">
+
+        <h2 class="gear-title">H PLUS SON Archetype</h2>
+
+        <div class="gear-image">
+          <img src="../GearSample.JPG" alt="H PLUS SON Archetype">
+        </div>
+
+        <div class="gear-meta">
+
+          <div class="meta-block">
+            <div class="meta-label">Distance used</div>
+            <div class="meta-value">4,842 / 10,000 km</div>
+            <div class="meta-note">recommended</div>
+          </div>
+
+          <div class="life-bar-block">
+            <div class="life-bar-label">Gear life</div>
+
+            <div class="life-bar-row">
+              <div class="life-bar">
+                <div class="life-bar-fill"></div>
+              </div>
+
+              <div class="life-percent">48%</div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
 
       <footer class="footer">
         <span>©︎ 2026 Yuto Fukushima</span>
