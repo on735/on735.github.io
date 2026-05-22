@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>On 735</title>
+  <title>Gears | On 735</title>
   <meta name="robots" content="noindex, nofollow">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist-font@latest/style.css">
@@ -31,7 +31,7 @@
       z-index: 10;
       margin: 0;
       font-size: 28px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: -0.03em;
     }
 
@@ -67,10 +67,7 @@
       color: var(--primary);
     }
 
-    .menu-button {
-      display: none;
-    }
-
+    .menu-button,
     .mobile-menu {
       display: none;
     }
@@ -81,133 +78,126 @@
       box-sizing: border-box;
     }
 
-    .hero {
-      display: none;
-    }
-
-    .intro {
+    .content {
       max-width: 720px;
-      margin: 0 0 72px auto;
+      margin-left: auto;
       text-align: right;
     }
 
     .page-title {
-      margin: 0 0 20px;
+      margin: 0 0 16px;
       font-size: 40px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: -0.04em;
       line-height: 1;
     }
 
-    .intro p {
-      margin: 0;
+    .page-description {
+      margin: 0 0 48px;
       font-size: 15px;
       line-height: 1.6;
       letter-spacing: -0.01em;
       opacity: 0.82;
     }
 
-    .odo-section {
-      max-width: 720px;
-      margin-left: auto;
+    .gear-section {
+      margin-bottom: 88px;
     }
 
-    h2 {
-      margin: 0;
-      text-align: right;
+    .gear-title {
+      margin: 0 0 20px;
       font-size: 18px;
       font-weight: 700;
       letter-spacing: -0.01em;
-      color: var(--secondary);
+      line-height: 1.2;
     }
 
-    .section-line {
+    .gear-image {
       width: 100%;
-      height: 1px;
-      margin: 16px 0 24px;
-      background: var(--secondary);
-      opacity: 0.35;
+      margin-bottom: 28px;
     }
 
-    .odo-wrapper {
+    .gear-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .gear-meta {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
+      gap: 18px;
     }
 
-    .odo {
-      color: var(--primary);
-      font-size: 120px;
-      font-weight: 600;
+    .gear-distance {
+      display: flex;
+      justify-content: flex-end;
+      align-items: baseline;
+      gap: 8px;
       line-height: 1;
+    }
+
+    .gear-distance-used {
+      color: var(--primary);
+      font-size: 40px;
+      font-weight: 800;
       letter-spacing: -0.05em;
     }
 
-    .unit {
-      margin-top: 8px;
-      font-size: 18px;
-      letter-spacing: 0.08em;
+    .gear-distance-total {
       color: var(--secondary);
-      opacity: 0.8;
+      font-size: 16px;
+      opacity: 0.82;
+      letter-spacing: -0.01em;
     }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 32px;
-      margin-top: 72px;
+    .life-bar {
+      width: 240px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.12);
+      overflow: hidden;
     }
 
-    .card {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    .life-bar-fill {
+      height: 100%;
+      background: var(--primary);
     }
 
-    .card-line {
-      width: 100%;
-      height: 1px;
-      margin: 2px 0 8px;
-      background: var(--secondary);
-      opacity: 0.35;
+    .life-bar-fill.frame {
+      width: 16%;
     }
 
-    .metric {
+    .life-bar-fill.wheel {
+      width: 48%;
+    }
+
+    .life-status {
       display: flex;
       justify-content: flex-end;
       align-items: baseline;
       gap: 6px;
-      font-size: 14px;
-      color: var(--secondary);
+      line-height: 1;
     }
 
-    .metric-value {
+    .life-percent-number {
       color: var(--primary);
-      font-size: 38px;
-      font-weight: 600;
-      letter-spacing: -0.04em;
-    }
-
-    .me-section {
-      margin-top: 88px;
-    }
-
-    .me-description {
-      text-align: right;
-      font-size: 15px;
-      line-height: 1.7;
-      letter-spacing: -0.01em;
-      color: var(--secondary);
-      opacity: 0.86;
-    }
-
-    .me-description p {
-      margin: 0;
-    }
-
-    .me-name {
+      font-size: 24px;
       font-weight: 700;
-      opacity: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .life-percent-mark {
+      color: var(--secondary);
+      font-size: 14px;
+      opacity: 0.82;
+    }
+
+    .life-text {
+      font-size: 13px;
+      color: var(--secondary);
+      opacity: 0.55;
+      letter-spacing: 0.01em;
     }
 
     .footer {
@@ -311,62 +301,51 @@
         padding: 76px 0 64px;
       }
 
-      .hero {
-        display: block;
-        width: 100%;
-        margin: 0 0 36px;
-      }
-
-      .hero img {
-        width: 100%;
-        height: auto;
-        display: block;
-      }
-
-      .intro {
-        margin: 0 24px 72px;
+      .content {
+        margin: 0 24px;
       }
 
       .page-title {
         font-size: 34px;
+        margin-bottom: 14px;
       }
 
-      .intro p {
+      .page-description {
         font-size: 14px;
+        margin-bottom: 40px;
       }
 
-      .odo-section {
-        margin: 0 24px;
+      .gear-section {
+        margin-bottom: 72px;
       }
 
-      .odo {
-        font-size: 88px;
-      }
-
-      .cards {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 48px 28px;
-        margin-top: 64px;
-      }
-
-      .card {
-        padding: 0 4px;
-      }
-
-      h2 {
+      .gear-title {
         font-size: 17px;
+        margin-bottom: 18px;
       }
 
-      .metric-value {
+      .gear-distance-used {
         font-size: 34px;
       }
 
-      .me-section {
-        margin-top: 80px;
+      .gear-distance-total {
+        font-size: 15px;
       }
 
-      .me-description {
-        font-size: 14px;
+      .life-bar {
+        width: 200px;
+      }
+
+      .life-percent-number {
+        font-size: 22px;
+      }
+
+      .life-percent-mark {
+        font-size: 13px;
+      }
+
+      .life-text {
+        font-size: 12px;
       }
 
       .footer {
@@ -403,68 +382,67 @@
 
   <main>
 
-    <div class="hero">
-      <img src="hero.jpg.jpg" alt="On 735 ride visual">
-    </div>
+    <section class="content">
 
-    <section class="intro">
-      <h1 class="page-title">Monitor</h1>
-      <p>Daily records while on 735</p>
-      <p>Ride movement is automatically logged</p>
-    </section>
+      <h1 class="page-title">Gears</h1>
+      <p class="page-description">Tracking maintenance timing</p>
 
-    <section class="odo-section">
+      <section class="gear-section">
 
-      <h2>Life latest</h2>
-      <div class="section-line"></div>
+        <h2 class="gear-title">LEADER 735TR</h2>
 
-      <div class="odo-wrapper">
-        <div class="odo">12,842</div>
-        <div class="unit">km</div>
-      </div>
-
-      <div class="cards">
-
-        <div class="card">
-          <h2>Yesterday</h2>
-          <div class="card-line"></div>
-          <div class="metric"><span class="metric-value">5</span><span>km</span></div>
-          <div class="metric"><span>Max</span><span class="metric-value">12</span><span>km/h</span></div>
+        <div class="gear-image">
+          <img src="../GearsSample.JPG" alt="LEADER 735TR">
         </div>
 
-        <div class="card">
-          <h2>This Week</h2>
-          <div class="card-line"></div>
-          <div class="metric"><span class="metric-value">18</span><span>km</span></div>
-          <div class="metric"><span>Max</span><span class="metric-value">15</span><span>km/h</span></div>
+        <div class="gear-meta">
+
+          <div class="gear-distance">
+            <span class="gear-distance-used">4,842</span>
+            <span class="gear-distance-total">/ 30,000 km</span>
+          </div>
+
+          <div class="life-bar">
+            <div class="life-bar-fill frame"></div>
+          </div>
+
+          <div class="life-status">
+            <span class="life-percent-number">16</span>
+            <span class="life-percent-mark">%</span>
+            <span class="life-text">used toward overhaul</span>
+          </div>
+
         </div>
 
-        <div class="card">
-          <h2>This Month</h2>
-          <div class="card-line"></div>
-          <div class="metric"><span class="metric-value">67</span><span>km</span></div>
-          <div class="metric"><span>Max</span><span class="metric-value">15</span><span>km/h</span></div>
+      </section>
+
+      <section class="gear-section">
+
+        <h2 class="gear-title">H PLUS SON Archetype</h2>
+
+        <div class="gear-image">
+          <img src="../GearSample.JPG" alt="H PLUS SON Archetype">
         </div>
 
-        <div class="card">
-          <h2>This Year</h2>
-          <div class="card-line"></div>
-          <div class="metric"><span class="metric-value">611</span><span>km</span></div>
-          <div class="metric"><span>Max</span><span class="metric-value">28</span><span>km/h</span></div>
+        <div class="gear-meta">
+
+          <div class="gear-distance">
+            <span class="gear-distance-used">4,842</span>
+            <span class="gear-distance-total">/ 10,000 km</span>
+          </div>
+
+          <div class="life-bar">
+            <div class="life-bar-fill wheel"></div>
+          </div>
+
+          <div class="life-status">
+            <span class="life-percent-number">48</span>
+            <span class="life-percent-mark">%</span>
+            <span class="life-text">used toward replacement</span>
+          </div>
+
         </div>
 
-      </div>
-
-      <section class="me-section">
-        <h2>Me</h2>
-        <div class="section-line"></div>
-
-        <div class="me-description">
-          <p class="me-name">Yuto Fukushima</p>
-          <p>I’m a husband, a father and a 735 rider</p>
-          <p>Riding 8 different bikes over the past 32 years</p>
-          <p>Started this log with my 735 in June 2026</p>
-        </div>
       </section>
 
       <footer class="footer">
