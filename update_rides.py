@@ -78,3 +78,11 @@ with open(rides_path, "w", encoding="utf-8") as f:
 
 print("data/rides.json updated")
 print(json.dumps(output, indent=2, ensure_ascii=False))
+
+import subprocess
+
+subprocess.run(["git", "add", "data/rides.json"], check=True)
+subprocess.run(["git", "commit", "-m", "Daily ride update"], check=False)
+subprocess.run(["git", "push"], check=True)
+
+print("GitHub pushed")
