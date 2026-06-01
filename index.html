@@ -637,7 +637,7 @@
     function updateMax(id, value) {
       document.getElementById(id).textContent =
         value === null || value === undefined
-          ? '-'
+          ? '0'
           : Math.round(Number(value)).toLocaleString();
     }
 
