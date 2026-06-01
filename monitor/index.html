@@ -86,10 +86,7 @@
       color: var(--primary);
     }
 
-    .menu-button {
-      display: none;
-    }
-
+    .menu-button,
     .mobile-menu {
       display: none;
     }
@@ -277,17 +274,9 @@
         transition: 0.2s ease;
       }
 
-      .menu-line:nth-child(1) {
-        width: 35px;
-      }
-
-      .menu-line:nth-child(2) {
-        width: 15px;
-      }
-
-      .menu-line:nth-child(3) {
-        width: 25px;
-      }
+      .menu-line:nth-child(1) { width: 35px; }
+      .menu-line:nth-child(2) { width: 15px; }
+      .menu-line:nth-child(3) { width: 25px; }
 
       .menu-button.is-open .menu-line:nth-child(1) {
         width: 28px;
@@ -439,7 +428,7 @@
       <div class="section-line"></div>
 
       <div class="odo-wrapper">
-        <div class="odo">12,842</div>
+        <div class="odo" id="life-latest">0</div>
         <div class="unit">km</div>
       </div>
 
@@ -449,12 +438,12 @@
           <h2>Yesterday</h2>
           <div class="card-line"></div>
           <div class="metric">
-            <span class="metric-value">5</span>
+            <span class="metric-value" id="yesterday-distance">0</span>
             <span>km</span>
           </div>
           <div class="metric">
             <span>Max</span>
-            <span class="metric-value">12</span>
+            <span class="metric-value" id="yesterday-max">-</span>
             <span>km/h</span>
           </div>
         </div>
@@ -463,12 +452,12 @@
           <h2>This Week</h2>
           <div class="card-line"></div>
           <div class="metric">
-            <span class="metric-value">18</span>
+            <span class="metric-value" id="week-distance">0</span>
             <span>km</span>
           </div>
           <div class="metric">
             <span>Max</span>
-            <span class="metric-value">15</span>
+            <span class="metric-value" id="week-max">-</span>
             <span>km/h</span>
           </div>
         </div>
@@ -477,12 +466,12 @@
           <h2>This Month</h2>
           <div class="card-line"></div>
           <div class="metric">
-            <span class="metric-value">67</span>
+            <span class="metric-value" id="month-distance">0</span>
             <span>km</span>
           </div>
           <div class="metric">
             <span>Max</span>
-            <span class="metric-value">15</span>
+            <span class="metric-value" id="month-max">-</span>
             <span>km/h</span>
           </div>
         </div>
@@ -491,12 +480,12 @@
           <h2>This Year</h2>
           <div class="card-line"></div>
           <div class="metric">
-            <span class="metric-value">611</span>
+            <span class="metric-value" id="year-distance">0</span>
             <span>km</span>
           </div>
           <div class="metric">
             <span>Max</span>
-            <span class="metric-value">28</span>
+            <span class="metric-value" id="year-max">-</span>
             <span>km/h</span>
           </div>
         </div>
@@ -516,7 +505,7 @@
       </section>
 
       <footer class="footer">
-        <span class="footer-update">UPDATED 7:35 AM</span>
+        <span class="footer-update" id="updated-at">UPDATED 7:35 AM</span>
         <span class="footer-copy">©︎ 2026 Yuto Fukushima</span>
       </footer>
 
@@ -549,6 +538,97 @@
     window.addEventListener('scroll', toggleBackground);
     window.addEventListener('resize', toggleBackground);
     window.addEventListener('load', toggleBackground);
+
+    async function loadRideData() {
+      try {
+        const response = await fetch('./data/rides.json');
+        const data = await response.json();
+        const rides = data.rides || [];
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const yesterday = new Date(today);
+        yesterday.setDate(today.getDate() - 1);
+
+        const monday = new Date(yesterday);
+        const day = monday.getDay();
+        const diff = day === 0 ? -6 : 1 - day;
+        monday.setDate(monday.getDate() + diff);
+        monday.setHours(0, 0, 0, 0);
+
+        const monthStart = new Date(yesterday.getFullYear(), yesterday.getMonth(), 1);
+        const yearStart = new Date(yesterday.getFullYear(), 0, 1);
+
+        const lifeLatest = rides.reduce((sum, ride) => sum + Number(ride.distanceKm || 0), 0);
+
+        const yesterdayRide = rides.find(ride => isSameDate(ride.date, yesterday));
+
+        const weekRides = rides.filter(ride => isBetween(ride.date, monday, yesterday));
+        const monthRides = rides.filter(ride => isBetween(ride.date, monthStart, yesterday));
+        const yearRides = rides.filter(ride => isBetween(ride.date, yearStart, yesterday));
+
+        updateDistance('life-latest', lifeLatest);
+        updateDistance('yesterday-distance', yesterdayRide ? yesterdayRide.distanceKm : 0);
+        updateMax('yesterday-max', yesterdayRide ? yesterdayRide.maxSpeedKmh : null);
+
+        updateDistance('week-distance', sumDistance(weekRides));
+        updateMax('week-max', getMaxSpeed(weekRides));
+
+        updateDistance('month-distance', sumDistance(monthRides));
+        updateMax('month-max', getMaxSpeed(monthRides));
+
+        updateDistance('year-distance', sumDistance(yearRides));
+        updateMax('year-max', getMaxSpeed(yearRides));
+      } catch (error) {
+        console.error('Failed to load ride data:', error);
+      }
+    }
+
+    function parseDate(dateString) {
+      const [year, month, day] = dateString.split('-').map(Number);
+      return new Date(year, month - 1, day);
+    }
+
+    function isSameDate(dateString, targetDate) {
+      const d = parseDate(dateString);
+      return d.getFullYear() === targetDate.getFullYear()
+        && d.getMonth() === targetDate.getMonth()
+        && d.getDate() === targetDate.getDate();
+    }
+
+    function isBetween(dateString, startDate, endDate) {
+      const d = parseDate(dateString);
+      d.setHours(0, 0, 0, 0);
+      return d >= startDate && d <= endDate;
+    }
+
+    function sumDistance(rides) {
+      return rides.reduce((sum, ride) => sum + Number(ride.distanceKm || 0), 0);
+    }
+
+    function getMaxSpeed(rides) {
+      const values = rides
+        .map(ride => ride.maxSpeedKmh)
+        .filter(value => value !== null && value !== undefined);
+
+      if (!values.length) return null;
+
+      return Math.round(Math.max(...values));
+    }
+
+    function updateDistance(id, value) {
+      document.getElementById(id).textContent = Math.round(Number(value || 0)).toLocaleString();
+    }
+
+    function updateMax(id, value) {
+      document.getElementById(id).textContent =
+        value === null || value === undefined
+          ? '-'
+          : Math.round(Number(value)).toLocaleString();
+    }
+
+    loadRideData();
   </script>
 
 </body>
