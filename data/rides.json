@@ -1,0 +1,11 @@
+{
+  "updatedAt": "2026-06-01T07:35:00+09:00",
+  "rides": [
+    {
+      "date": "2026-06-01",
+      "distanceKm": 3.07,
+      "maxSpeedKmh": 33.7,
+      "avgSpeedKmh": 16.3
+    }
+  ]
+}
