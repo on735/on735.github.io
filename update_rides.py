@@ -3,8 +3,8 @@ from garminconnect import Garmin
 import json
 import os
 
-EMAIL = "yu.fukushima.45@gmail.com"
-PASSWORD = "Yokomoji45ga"
+EMAIL = os.environ["GARMIN_EMAIL"]
+PASSWORD = os.environ["GARMIN_PASSWORD"]
 
 client = Garmin(EMAIL, PASSWORD)
 client.login()
