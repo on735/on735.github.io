@@ -30,7 +30,7 @@
       position: fixed;
       inset: 0;
       z-index: -1;
-      background-image: url("bk01.jpg");
+      background-image: url("../bk01.jpg");
       background-size: cover;
       background-position: center top;
       background-repeat: no-repeat;
@@ -151,6 +151,13 @@
       align-items: flex-end;
     }
 
+    .label {
+      color: var(--secondary);
+      font-size: 18px;
+      letter-spacing: -0.01em;
+      opacity: 0.82;
+    }
+
     .odo {
       color: var(--primary);
       font-size: 96px;
@@ -195,6 +202,12 @@
       gap: 6px;
       font-size: 14px;
       color: var(--secondary);
+    }
+
+    .metric-label {
+      color: var(--secondary);
+      font-size: 14px;
+      opacity: 0.82;
     }
 
     .metric-value {
@@ -274,9 +287,17 @@
         transition: 0.2s ease;
       }
 
-      .menu-line:nth-child(1) { width: 35px; }
-      .menu-line:nth-child(2) { width: 15px; }
-      .menu-line:nth-child(3) { width: 25px; }
+      .menu-line:nth-child(1) {
+        width: 35px;
+      }
+
+      .menu-line:nth-child(2) {
+        width: 15px;
+      }
+
+      .menu-line:nth-child(3) {
+        width: 25px;
+      }
 
       .menu-button.is-open .menu-line:nth-child(1) {
         width: 28px;
@@ -368,6 +389,11 @@
         font-size: 34px;
       }
 
+      .metric-label,
+      .metric {
+        font-size: 14px;
+      }
+
       .me-section {
         margin-top: 80px;
       }
@@ -413,7 +439,7 @@
   <main>
 
     <div class="hero">
-      <img src="hero.jpg.jpg" alt="On 735 ride visual">
+      <img src="../hero.jpg.jpg" alt="On 735 ride visual">
     </div>
 
     <section class="intro">
@@ -428,6 +454,7 @@
       <div class="section-line"></div>
 
       <div class="odo-wrapper">
+        <div class="label">Total Distance</div>
         <div class="odo" id="life-latest">0</div>
         <div class="unit">km</div>
       </div>
@@ -438,12 +465,13 @@
           <h2>Yesterday</h2>
           <div class="card-line"></div>
           <div class="metric">
+            <span class="metric-label">Distance</span>
             <span class="metric-value" id="yesterday-distance">0</span>
             <span>km</span>
           </div>
           <div class="metric">
             <span>Max</span>
-            <span class="metric-value" id="yesterday-max">-</span>
+            <span class="metric-value" id="yesterday-max">0</span>
             <span>km/h</span>
           </div>
         </div>
@@ -452,12 +480,13 @@
           <h2>This Week</h2>
           <div class="card-line"></div>
           <div class="metric">
+            <span class="metric-label">Distance</span>
             <span class="metric-value" id="week-distance">0</span>
             <span>km</span>
           </div>
           <div class="metric">
             <span>Max</span>
-            <span class="metric-value" id="week-max">-</span>
+            <span class="metric-value" id="week-max">0</span>
             <span>km/h</span>
           </div>
         </div>
@@ -466,12 +495,13 @@
           <h2>This Month</h2>
           <div class="card-line"></div>
           <div class="metric">
+            <span class="metric-label">Distance</span>
             <span class="metric-value" id="month-distance">0</span>
             <span>km</span>
           </div>
           <div class="metric">
             <span>Max</span>
-            <span class="metric-value" id="month-max">-</span>
+            <span class="metric-value" id="month-max">0</span>
             <span>km/h</span>
           </div>
         </div>
@@ -480,12 +510,13 @@
           <h2>This Year</h2>
           <div class="card-line"></div>
           <div class="metric">
+            <span class="metric-label">Distance</span>
             <span class="metric-value" id="year-distance">0</span>
             <span>km</span>
           </div>
           <div class="metric">
             <span>Max</span>
-            <span class="metric-value" id="year-max">-</span>
+            <span class="metric-value" id="year-max">0</span>
             <span>km/h</span>
           </div>
         </div>
@@ -541,7 +572,7 @@
 
     async function loadRideData() {
       try {
-        const response = await fetch('./data/rides.json');
+        const response = await fetch('../data/rides.json');
         const data = await response.json();
         const rides = data.rides || [];
 
@@ -569,8 +600,9 @@
         const yearRides = rides.filter(ride => isBetween(ride.date, yearStart, yesterday));
 
         updateDistance('life-latest', lifeLatest);
+
         updateDistance('yesterday-distance', yesterdayRide ? yesterdayRide.distanceKm : 0);
-        updateMax('yesterday-max', yesterdayRide ? yesterdayRide.maxSpeedKmh : null);
+        updateMax('yesterday-max', yesterdayRide ? yesterdayRide.maxSpeedKmh : 0);
 
         updateDistance('week-distance', sumDistance(weekRides));
         updateMax('week-max', getMaxSpeed(weekRides));
@@ -580,6 +612,7 @@
 
         updateDistance('year-distance', sumDistance(yearRides));
         updateMax('year-max', getMaxSpeed(yearRides));
+
       } catch (error) {
         console.error('Failed to load ride data:', error);
       }
@@ -592,6 +625,7 @@
 
     function isSameDate(dateString, targetDate) {
       const d = parseDate(dateString);
+
       return d.getFullYear() === targetDate.getFullYear()
         && d.getMonth() === targetDate.getMonth()
         && d.getDate() === targetDate.getDate();
@@ -600,6 +634,7 @@
     function isBetween(dateString, startDate, endDate) {
       const d = parseDate(dateString);
       d.setHours(0, 0, 0, 0);
+
       return d >= startDate && d <= endDate;
     }
 
@@ -612,20 +647,19 @@
         .map(ride => ride.maxSpeedKmh)
         .filter(value => value !== null && value !== undefined);
 
-      if (!values.length) return null;
+      if (!values.length) return 0;
 
       return Math.round(Math.max(...values));
     }
 
     function updateDistance(id, value) {
-      document.getElementById(id).textContent = Math.round(Number(value || 0)).toLocaleString();
+      document.getElementById(id).textContent =
+        Math.round(Number(value || 0)).toLocaleString();
     }
 
     function updateMax(id, value) {
       document.getElementById(id).textContent =
-        value === null || value === undefined
-          ? '-'
-          : Math.round(Number(value)).toLocaleString();
+        Math.round(Number(value || 0)).toLocaleString();
     }
 
     loadRideData();
