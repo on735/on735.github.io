@@ -151,6 +151,13 @@
       align-items: flex-end;
     }
 
+    .label {
+      color: var(--secondary);
+      font-size: 18px;
+      letter-spacing: -0.01em;
+      opacity: 0.82;
+    }
+
     .odo {
       color: var(--primary);
       font-size: 96px;
@@ -195,6 +202,12 @@
       gap: 6px;
       font-size: 14px;
       color: var(--secondary);
+    }
+
+    .metric-label {
+      color: var(--secondary);
+      font-size: 14px;
+      opacity: 0.82;
     }
 
     .metric-value {
@@ -376,6 +389,11 @@
         font-size: 34px;
       }
 
+      .metric-label,
+      .metric {
+        font-size: 14px;
+      }
+
       .me-section {
         margin-top: 80px;
       }
@@ -436,6 +454,7 @@
       <div class="section-line"></div>
 
       <div class="odo-wrapper">
+        <div class="label">Total Distance</div>
         <div class="odo" id="life-latest">0</div>
         <div class="unit">km</div>
       </div>
@@ -446,12 +465,13 @@
           <h2>Yesterday</h2>
           <div class="card-line"></div>
           <div class="metric">
+            <span class="metric-label">Distance</span>
             <span class="metric-value" id="yesterday-distance">0</span>
             <span>km</span>
           </div>
           <div class="metric">
             <span>Max</span>
-            <span class="metric-value" id="yesterday-max">-</span>
+            <span class="metric-value" id="yesterday-max">0</span>
             <span>km/h</span>
           </div>
         </div>
@@ -460,12 +480,13 @@
           <h2>This Week</h2>
           <div class="card-line"></div>
           <div class="metric">
+            <span class="metric-label">Distance</span>
             <span class="metric-value" id="week-distance">0</span>
             <span>km</span>
           </div>
           <div class="metric">
             <span>Max</span>
-            <span class="metric-value" id="week-max">-</span>
+            <span class="metric-value" id="week-max">0</span>
             <span>km/h</span>
           </div>
         </div>
@@ -474,12 +495,13 @@
           <h2>This Month</h2>
           <div class="card-line"></div>
           <div class="metric">
+            <span class="metric-label">Distance</span>
             <span class="metric-value" id="month-distance">0</span>
             <span>km</span>
           </div>
           <div class="metric">
             <span>Max</span>
-            <span class="metric-value" id="month-max">-</span>
+            <span class="metric-value" id="month-max">0</span>
             <span>km/h</span>
           </div>
         </div>
@@ -488,12 +510,13 @@
           <h2>This Year</h2>
           <div class="card-line"></div>
           <div class="metric">
+            <span class="metric-label">Distance</span>
             <span class="metric-value" id="year-distance">0</span>
             <span>km</span>
           </div>
           <div class="metric">
             <span>Max</span>
-            <span class="metric-value" id="year-max">-</span>
+            <span class="metric-value" id="year-max">0</span>
             <span>km/h</span>
           </div>
         </div>
@@ -579,7 +602,7 @@
         updateDistance('life-latest', lifeLatest);
 
         updateDistance('yesterday-distance', yesterdayRide ? yesterdayRide.distanceKm : 0);
-        updateMax('yesterday-max', yesterdayRide ? yesterdayRide.maxSpeedKmh : null);
+        updateMax('yesterday-max', yesterdayRide ? yesterdayRide.maxSpeedKmh : 0);
 
         updateDistance('week-distance', sumDistance(weekRides));
         updateMax('week-max', getMaxSpeed(weekRides));
@@ -624,7 +647,7 @@
         .map(ride => ride.maxSpeedKmh)
         .filter(value => value !== null && value !== undefined);
 
-      if (!values.length) return null;
+      if (!values.length) return 0;
 
       return Math.round(Math.max(...values));
     }
@@ -636,9 +659,7 @@
 
     function updateMax(id, value) {
       document.getElementById(id).textContent =
-        value === null || value === undefined
-          ? '0'
-          : Math.round(Number(value)).toLocaleString();
+        Math.round(Number(value || 0)).toLocaleString();
     }
 
     loadRideData();
