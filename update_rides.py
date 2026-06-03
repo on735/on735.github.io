@@ -63,6 +63,14 @@ for item in daily.values():
 
 rides.sort(key=lambda x: x["date"])
 
+if len(rides) == 0:
+    raise Exception("No ride data found. Stop update to avoid overwriting rides.json.")
+
+output = {
+    "updatedAt": f"{date.today().isoformat()}T07:35:00+09:00",
+    "rides": rides
+}
+
 output = {
     "updatedAt": f"{date.today().isoformat()}T07:35:00+09:00",
     "rides": rides
