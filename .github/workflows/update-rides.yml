@@ -1,5 +1,7 @@
 name: Update Garmin Ride Data
 
+# Runs every day at 07:35 JST
+
 on:
   schedule:
     - cron: '35 22 * * *'
