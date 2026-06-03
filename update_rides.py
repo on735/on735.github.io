@@ -71,11 +71,6 @@ output = {
     "rides": rides
 }
 
-output = {
-    "updatedAt": f"{date.today().isoformat()}T07:35:00+09:00",
-    "rides": rides
-}
-
 data_dir = os.path.join(os.path.dirname(__file__), "data")
 os.makedirs(data_dir, exist_ok=True)
 
