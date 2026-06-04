@@ -27,7 +27,7 @@
 
     .site-title {
       position: fixed;
-      top: 32px;
+      top: 28px;
       left: 32px;
       z-index: 10;
       margin: 0;
@@ -43,24 +43,37 @@
 
     .desktop-nav {
       position: fixed;
-      top: 36px;
-      right: 32px;
+      top: 32px;
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 10;
       display: flex;
-      gap: 28px;
+      gap: 56px;
       font-size: 14px;
       font-weight: 700;
     }
 
     .desktop-nav a,
     .mobile-menu a {
+      position: relative;
       color: var(--secondary);
       text-decoration: none;
+      padding-bottom: 8px;
     }
 
     .desktop-nav a:hover,
     .mobile-menu a:hover {
       color: var(--primary);
+    }
+
+    .desktop-nav a.is-active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 3px;
+      background: var(--primary);
     }
 
     .menu-button,
@@ -162,7 +175,7 @@
 
     @media (max-width: 767px) {
       .site-title {
-        top: 24px;
+        top: 20px;
         left: 24px;
         font-size: 26px;
       }
@@ -173,7 +186,7 @@
 
       .menu-button {
         position: fixed;
-        top: 28px;
+        top: 27px;
         right: 24px;
         z-index: 20;
         display: flex;
@@ -192,17 +205,9 @@
         transition: 0.2s ease;
       }
 
-      .menu-line:nth-child(1) {
-        width: 35px;
-      }
-
-      .menu-line:nth-child(2) {
-        width: 15px;
-      }
-
-      .menu-line:nth-child(3) {
-        width: 25px;
-      }
+      .menu-line:nth-child(1) { width: 35px; }
+      .menu-line:nth-child(2) { width: 15px; }
+      .menu-line:nth-child(3) { width: 25px; }
 
       .menu-button.is-open .menu-line:nth-child(1) {
         width: 28px;
@@ -220,7 +225,7 @@
 
       .mobile-menu {
         position: fixed;
-        top: 56px;
+        top: 55px;
         right: 0;
         z-index: 15;
         display: none;
@@ -241,7 +246,7 @@
       }
 
       main {
-        padding: 88px 0 64px;
+        padding: 76px 0 64px;
       }
 
       .hero {
@@ -296,7 +301,7 @@
 
   <nav class="desktop-nav">
     <a href="/monitor/">Monitor</a>
-    <a href="/log/">Log</a>
+    <a href="/log/" class="is-active">Log</a>
     <a href="/gears/">Gears</a>
   </nav>
 
@@ -363,41 +368,32 @@
       try {
         const response = await fetch('../data/rides.json');
         const data = await response.json();
+        const rides = data.rides || [];
+        const logBody = document.getElementById('log-body');
 
-        const rides = [...(data.rides || [])];
-
-        rides.sort((a, b) => {
+        const sortedRides = [...rides].sort((a, b) => {
           return new Date(b.date) - new Date(a.date);
         });
 
-        const logBody = document.getElementById('log-body');
-        logBody.innerHTML = '';
+        logBody.innerHTML = sortedRides.map(ride => {
+          const date = ride.date.replace(/-/g, '.');
+          const distance = Number(ride.distanceKm || 0).toFixed(1);
+          const maxSpeed = Number(ride.maxSpeedKmh || 0).toFixed(1);
+          const avgSpeed = Number(ride.avgSpeedKmh || 0).toFixed(1);
 
-        rides.forEach(ride => {
-          const date = formatDate(ride.date);
-          const distance = Math.round(Number(ride.distanceKm || 0));
-          const maxSpeed = Math.round(Number(ride.maxSpeedKmh || 0));
-          const avgSpeed = Math.round(Number(ride.avgSpeedKmh || 0));
+          return `
+            <div class="log-row">
+              <span>${date}</span>
+              <span class="value">${distance} km</span>
+              <span class="value">${maxSpeed} km/h</span>
+              <span class="value">${avgSpeed} km/h</span>
+            </div>
+          `;
+        }).join('');
 
-          logBody.insertAdjacentHTML(
-            'beforeend',
-            `
-              <div class="log-row">
-                <span>${date}</span>
-                <span class="value">${distance} km</span>
-                <span class="value">${maxSpeed} km/h</span>
-                <span class="value">${avgSpeed} km/h</span>
-              </div>
-            `
-          );
-        });
       } catch (error) {
-        console.error('Failed to load rides.json:', error);
+        console.error('Failed to load log data:', error);
       }
-    }
-
-    function formatDate(dateString) {
-      return dateString.replaceAll('-', '.');
     }
 
     loadLogData();
