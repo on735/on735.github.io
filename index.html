@@ -67,10 +67,11 @@
     .desktop-nav {
       position: fixed;
       top: 32px;
-      right: 32px;
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 10;
       display: flex;
-      gap: 28px;
+      gap: 56px;
       font-size: 14px;
       font-weight: 700;
     }
@@ -120,7 +121,8 @@
       font-size: 15px;
       line-height: 1.6;
       letter-spacing: -0.01em;
-      opacity: 0.82;
+      color: var(--secondary);
+      opacity: 0.8;
     }
 
     .odo-section {
@@ -155,7 +157,7 @@
       color: var(--secondary);
       font-size: 18px;
       letter-spacing: -0.01em;
-      opacity: 0.82;
+      opacity: 0.8;
     }
 
     .odo {
@@ -204,10 +206,11 @@
       color: var(--secondary);
     }
 
-    .metric-label {
+    .metric-label,
+    .metric-unit {
       color: var(--secondary);
       font-size: 14px;
-      opacity: 0.82;
+      opacity: 0.8;
     }
 
     .metric-value {
@@ -227,7 +230,7 @@
       line-height: 1.7;
       letter-spacing: -0.01em;
       color: var(--secondary);
-      opacity: 0.86;
+      opacity: 0.8;
     }
 
     .me-description p {
@@ -236,7 +239,6 @@
 
     .me-name {
       font-weight: 700;
-      opacity: 1;
     }
 
     .footer {
@@ -390,6 +392,7 @@
       }
 
       .metric-label,
+      .metric-unit,
       .metric {
         font-size: 14px;
       }
@@ -467,12 +470,12 @@
           <div class="metric">
             <span class="metric-label">Distance</span>
             <span class="metric-value" id="yesterday-distance">0</span>
-            <span>km</span>
+            <span class="metric-unit">km</span>
           </div>
           <div class="metric">
-            <span>Max</span>
+            <span class="metric-label">Max</span>
             <span class="metric-value" id="yesterday-max">0</span>
-            <span>km/h</span>
+            <span class="metric-unit">km/h</span>
           </div>
         </div>
 
@@ -482,12 +485,12 @@
           <div class="metric">
             <span class="metric-label">Distance</span>
             <span class="metric-value" id="week-distance">0</span>
-            <span>km</span>
+            <span class="metric-unit">km</span>
           </div>
           <div class="metric">
-            <span>Max</span>
+            <span class="metric-label">Max</span>
             <span class="metric-value" id="week-max">0</span>
-            <span>km/h</span>
+            <span class="metric-unit">km/h</span>
           </div>
         </div>
 
@@ -497,12 +500,12 @@
           <div class="metric">
             <span class="metric-label">Distance</span>
             <span class="metric-value" id="month-distance">0</span>
-            <span>km</span>
+            <span class="metric-unit">km</span>
           </div>
           <div class="metric">
-            <span>Max</span>
+            <span class="metric-label">Max</span>
             <span class="metric-value" id="month-max">0</span>
-            <span>km/h</span>
+            <span class="metric-unit">km/h</span>
           </div>
         </div>
 
@@ -512,12 +515,12 @@
           <div class="metric">
             <span class="metric-label">Distance</span>
             <span class="metric-value" id="year-distance">0</span>
-            <span>km</span>
+            <span class="metric-unit">km</span>
           </div>
           <div class="metric">
-            <span>Max</span>
+            <span class="metric-label">Max</span>
             <span class="metric-value" id="year-max">0</span>
-            <span>km/h</span>
+            <span class="metric-unit">km/h</span>
           </div>
         </div>
 
