@@ -16,8 +16,6 @@
       --bg: #000;
       --primary: #7e3de5;
       --secondary: #fff;
-      --line: rgba(255,255,255,.35);
-      --muted: rgba(255,255,255,.55);
     }
 
     body {
@@ -96,10 +94,10 @@
 
     .card-title {
       margin: 0 0 20px;
-      font-size: 30px;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 1.05;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
     }
 
     .gear-image {
@@ -112,30 +110,30 @@
       display: flex;
       justify-content: flex-end;
       align-items: baseline;
-      gap: 10px;
-      margin-bottom: 22px;
+      gap: 6px;
+      margin-bottom: 18px;
     }
 
     .distance-current {
       color: var(--primary);
-      font-size: 72px;
-      font-weight: 800;
+      font-size: 38px;
+      font-weight: 700;
       line-height: 1;
-      letter-spacing: -0.06em;
+      letter-spacing: -0.04em;
     }
 
     .distance-target {
       color: var(--secondary);
-      font-size: 28px;
+      font-size: 14px;
       line-height: 1;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.01em;
     }
 
     .progress {
-      width: 100%;
-      height: 10px;
-      margin: 0 0 28px;
-      background: rgba(255,255,255,.18);
+      width: 50%;
+      height: 3px;
+      margin: 0 0 18px auto;
+      background: rgba(255, 255, 255, 0.18);
       overflow: hidden;
     }
 
@@ -148,33 +146,36 @@
 
     .progress-text {
       margin: 0;
-      font-size: 26px;
+      font-size: 38px;
       font-weight: 700;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.04em;
+      line-height: 1.15;
       color: var(--secondary);
     }
 
     .progress-number {
       color: var(--primary);
-      font-size: 44px;
-      font-weight: 800;
-      letter-spacing: -0.05em;
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
     }
 
     .tracked {
       margin: 2px 0 0;
-      font-size: 26px;
+      font-size: 38px;
       font-weight: 700;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.04em;
+      line-height: 1.15;
       color: var(--secondary);
     }
 
     .specs {
       margin-top: 24px;
-      font-size: 20px;
+      font-size: 14px;
       font-weight: 700;
       line-height: 1.45;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.01em;
+      color: var(--secondary);
     }
 
     .specs p {
@@ -183,19 +184,19 @@
 
     .ratio-main {
       color: var(--primary);
-      font-size: 72px;
-      font-weight: 800;
+      font-size: 38px;
+      font-weight: 700;
       line-height: 1;
-      letter-spacing: -0.06em;
+      letter-spacing: -0.04em;
       margin: 0 0 12px;
     }
 
     .ratio-sub {
       color: var(--secondary);
-      font-size: 28px;
+      font-size: 14px;
       font-weight: 700;
-      line-height: 1.35;
-      letter-spacing: -0.03em;
+      line-height: 1.45;
+      letter-spacing: -0.01em;
       margin: 0;
     }
 
@@ -207,7 +208,7 @@
       gap: 24px;
       font-size: 12px;
       color: var(--secondary);
-      opacity: .5;
+      opacity: 0.5;
     }
 
     @media (max-width: 767px) {
@@ -239,7 +240,7 @@
       .menu-line {
         height: 2px;
         background: var(--secondary);
-        transition: .2s ease;
+        transition: 0.2s ease;
       }
 
       .menu-line:nth-child(1) { width: 35px; }
@@ -272,7 +273,7 @@
         width: 42vw;
         padding: 20px 24px 20px 0;
         box-sizing: border-box;
-        background: rgba(0,0,0,.8);
+        background: rgba(0, 0, 0, 0.8);
         text-align: right;
         font-size: 18px;
         font-weight: 700;
@@ -300,30 +301,21 @@
       }
 
       .card-title {
-        font-size: 28px;
+        font-size: 17px;
       }
 
       .distance-current,
+      .progress-text,
+      .progress-number,
+      .tracked,
       .ratio-main {
-        font-size: 64px;
+        font-size: 34px;
       }
 
       .distance-target,
+      .specs,
       .ratio-sub {
-        font-size: 24px;
-      }
-
-      .progress-text,
-      .tracked {
-        font-size: 22px;
-      }
-
-      .progress-number {
-        font-size: 40px;
-      }
-
-      .specs {
-        font-size: 18px;
+        font-size: 14px;
       }
     }
   </style>
@@ -390,7 +382,7 @@
         targetKm: 8000,
         purpose: 'overhaul',
         trackedFrom: '2026-06-20',
-        specs: ['Frame Weight:', 'Gross Weight: 8.8 kg']
+        specs: ['Frame Weight: 7.8 kg', 'Gross Weight: 8.8 kg']
       },
       {
         title: 'Chain: KMC Z410',
@@ -452,7 +444,7 @@
     function renderGears(rides) {
       const list = document.getElementById('gear-list');
 
-      list.innerHTML = gears.map((gear, index) => {
+      list.innerHTML = gears.map((gear) => {
         const totalDistance = getDistanceFrom(rides, gear.trackedFrom);
         const progress = gear.targetKm > 0
           ? Math.min(Math.round((totalDistance / gear.targetKm) * 100), 100)
