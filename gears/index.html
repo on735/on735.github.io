@@ -122,10 +122,12 @@
       letter-spacing: -0.04em;
     }
 
-    .distance-target {
+    .distance-target,
+    .meta-text {
       color: var(--secondary);
       font-size: 14px;
-      line-height: 1;
+      font-weight: 700;
+      line-height: 1.45;
       letter-spacing: -0.01em;
     }
 
@@ -144,38 +146,25 @@
       transition: width 2s ease;
     }
 
-    .progress-text {
+    .progress-line {
       margin: 0;
-      font-size: 38px;
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      line-height: 1.15;
-      color: var(--secondary);
+      line-height: 1.45;
     }
 
     .progress-number {
       color: var(--primary);
       font-size: 38px;
       font-weight: 700;
+      line-height: 1;
       letter-spacing: -0.04em;
     }
 
     .tracked {
       margin: 2px 0 0;
-      font-size: 38px;
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      line-height: 1.15;
-      color: var(--secondary);
     }
 
     .specs {
       margin-top: 24px;
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 1.45;
-      letter-spacing: -0.01em;
-      color: var(--secondary);
     }
 
     .specs p {
@@ -305,15 +294,13 @@
       }
 
       .distance-current,
-      .progress-text,
       .progress-number,
-      .tracked,
       .ratio-main {
         font-size: 34px;
       }
 
       .distance-target,
-      .specs,
+      .meta-text,
       .ratio-sub {
         font-size: 14px;
       }
@@ -451,7 +438,7 @@
           : 0;
 
         const specsHtml = gear.specs
-          ? `<div class="specs">${gear.specs.map(item => `<p>${item}</p>`).join('')}</div>`
+          ? `<div class="specs meta-text">${gear.specs.map(item => `<p>${item}</p>`).join('')}</div>`
           : '';
 
         return `
@@ -465,11 +452,11 @@
             <div class="progress">
               <div class="progress-fill" data-progress="${progress}"></div>
             </div>
-            <p class="progress-text">
+            <p class="progress-line">
               <span class="progress-number">${progress}</span>
-              % ridden toward ${gear.purpose}
+              <span class="meta-text">% ridden toward ${gear.purpose}</span>
             </p>
-            <p class="tracked">Tracked from ${formatTrackedDate(gear.trackedFrom)}</p>
+            <p class="tracked meta-text">Tracked from ${formatTrackedDate(gear.trackedFrom)}</p>
             ${specsHtml}
           </section>
         `;
