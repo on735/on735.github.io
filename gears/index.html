@@ -4,18 +4,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Gears | On 735</title>
   <meta name="robots" content="noindex, nofollow">
   <meta name="google" content="notranslate">
+
+  <title>Gears | On 735</title>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist-font@latest/style.css">
 
   <style>
     :root {
-      --bg: #000000;
+      --bg: #000;
       --primary: #7e3de5;
-      --secondary: #ffffff;
+      --secondary: #fff;
+      --line: rgba(255,255,255,.35);
+      --muted: rgba(255,255,255,.55);
     }
 
     body {
@@ -39,11 +41,6 @@
     .site-title a {
       color: var(--secondary);
       text-decoration: none;
-    }
-
-    .site-title a:visited,
-    .site-title a:hover {
-      color: var(--secondary);
     }
 
     .desktop-nav {
@@ -75,214 +72,147 @@
 
     main {
       min-height: 100vh;
-      padding: 104px 48px 64px;
+      padding: 120px 48px 72px;
       box-sizing: border-box;
     }
 
     .content {
-      max-width: 720px;
+      max-width: 760px;
       margin-left: auto;
       text-align: right;
     }
 
     .page-title {
-      margin: 0 0 16px;
+      margin: 0 0 56px;
       font-size: 40px;
       font-weight: 800;
       letter-spacing: -0.04em;
       line-height: 1;
     }
 
-    .page-description {
-      margin: 0 0 48px;
-      font-size: 15px;
-      line-height: 1.6;
-      letter-spacing: -0.01em;
-      opacity: 0.82;
+    .gear-card {
+      margin-bottom: 72px;
     }
 
-    .gear-section {
-      margin-bottom: 88px;
-    }
-
-    .gear-title {
+    .card-title {
       margin: 0 0 20px;
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      line-height: 1.2;
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
     }
 
     .gear-image {
       width: 100%;
       margin-bottom: 28px;
-    }
-
-    .gear-image img {
-      width: 100%;
-      height: auto;
       display: block;
     }
 
-    .gear-meta {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 18px;
-    }
-
-    .gear-distance {
+    .distance-row {
       display: flex;
       justify-content: flex-end;
       align-items: baseline;
-      gap: 8px;
-      line-height: 1;
+      gap: 10px;
+      margin-bottom: 22px;
     }
 
-    .gear-distance-used {
+    .distance-current {
       color: var(--primary);
-      font-size: 40px;
+      font-size: 72px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+
+    .distance-target {
+      color: var(--secondary);
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .progress {
+      width: 100%;
+      height: 10px;
+      margin: 0 0 28px;
+      background: rgba(255,255,255,.18);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: var(--primary);
+      transition: width 2s ease;
+    }
+
+    .progress-text {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--secondary);
+    }
+
+    .progress-number {
+      color: var(--primary);
+      font-size: 44px;
       font-weight: 800;
       letter-spacing: -0.05em;
     }
 
-    .gear-distance-total {
-      color: var(--secondary);
-      font-size: 16px;
-      opacity: 0.82;
-      letter-spacing: -0.01em;
-    }
-
-    .life-bar {
-      width: 240px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.12);
-      overflow: hidden;
-    }
-
-    .life-bar-fill {
-      height: 100%;
-      width: 0;
-      background: var(--primary);
-      animation: growBar 2s ease-out forwards;
-    }
-
-    .life-bar-fill.frame {
-      --target-width: 16%;
-    }
-
-    .life-bar-fill.wheel {
-      --target-width: 48%;
-    }
-
-    @keyframes growBar {
-      from {
-        width: 0;
-      }
-
-      to {
-        width: var(--target-width);
-      }
-    }
-
-    .life-status {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 2px;
-      line-height: 1;
-    }
-
-    .life-status-line {
-      display: flex;
-      justify-content: flex-end;
-      align-items: baseline;
-      gap: 6px;
-      line-height: 1;
-    }
-
-    .life-percent-window {
-      display: inline-block;
-      height: 28px;
-      overflow: hidden;
-      vertical-align: baseline;
-    }
-
-    .life-percent-number {
-      display: inline-block;
-      color: var(--primary);
-      font-size: 24px;
+    .tracked {
+      margin: 2px 0 0;
+      font-size: 26px;
       font-weight: 700;
       letter-spacing: -0.03em;
-      animation: numberSlide 2s steps(var(--target-number)) forwards;
-      transform: translateY(0);
-    }
-
-    .life-percent-number.frame {
-      --target-number: 16;
-      --slide-distance: -448px;
-    }
-
-    .life-percent-number.wheel {
-      --target-number: 48;
-      --slide-distance: -1344px;
-    }
-
-    @keyframes numberSlide {
-      from {
-        transform: translateY(0);
-      }
-
-      to {
-        transform: translateY(var(--slide-distance));
-      }
-    }
-
-    .number-stack {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-    }
-
-    .number-stack span {
-      height: 28px;
-      line-height: 28px;
-    }
-
-    .life-percent-mark {
       color: var(--secondary);
-      font-size: 14px;
-      opacity: 0.82;
     }
 
-    .life-text,
-    .life-tracked {
-      font-size: 13px;
+    .specs {
+      margin-top: 24px;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.45;
+      letter-spacing: -0.02em;
+    }
+
+    .specs p {
+      margin: 0;
+    }
+
+    .ratio-main {
+      color: var(--primary);
+      font-size: 72px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.06em;
+      margin: 0 0 12px;
+    }
+
+    .ratio-sub {
       color: var(--secondary);
-      opacity: 0.55;
-      letter-spacing: 0.01em;
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.03em;
+      margin: 0;
     }
 
     .footer {
-      margin-top: 40px;
+      margin-top: 56px;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
       gap: 24px;
       font-size: 12px;
       color: var(--secondary);
-      opacity: 0.5;
-    }
-
-    .footer-update,
-    .footer-copy {
-      white-space: nowrap;
+      opacity: .5;
     }
 
     @media (max-width: 767px) {
-
       .site-title {
-        top: 20px;
+        top: 24px;
         left: 24px;
         font-size: 26px;
       }
@@ -293,7 +223,7 @@
 
       .menu-button {
         position: fixed;
-        top: 27px;
+        top: 28px;
         right: 24px;
         z-index: 20;
         display: flex;
@@ -309,20 +239,12 @@
       .menu-line {
         height: 2px;
         background: var(--secondary);
-        transition: 0.2s ease;
+        transition: .2s ease;
       }
 
-      .menu-line:nth-child(1) {
-        width: 35px;
-      }
-
-      .menu-line:nth-child(2) {
-        width: 15px;
-      }
-
-      .menu-line:nth-child(3) {
-        width: 25px;
-      }
+      .menu-line:nth-child(1) { width: 35px; }
+      .menu-line:nth-child(2) { width: 15px; }
+      .menu-line:nth-child(3) { width: 25px; }
 
       .menu-button.is-open .menu-line:nth-child(1) {
         width: 28px;
@@ -340,7 +262,7 @@
 
       .mobile-menu {
         position: fixed;
-        top: 55px;
+        top: 56px;
         right: 0;
         z-index: 15;
         display: none;
@@ -350,7 +272,7 @@
         width: 42vw;
         padding: 20px 24px 20px 0;
         box-sizing: border-box;
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0,0,0,.8);
         text-align: right;
         font-size: 18px;
         font-weight: 700;
@@ -361,77 +283,47 @@
       }
 
       main {
-        padding: 76px 0 64px;
+        padding: 88px 24px 64px;
       }
 
       .content {
-        margin: 0 24px;
+        max-width: none;
       }
 
       .page-title {
         font-size: 34px;
-        margin-bottom: 14px;
+        margin-bottom: 48px;
       }
 
-      .page-description {
-        font-size: 14px;
-        margin-bottom: 40px;
+      .gear-card {
+        margin-bottom: 64px;
       }
 
-      .gear-section {
-        margin-bottom: 72px;
+      .card-title {
+        font-size: 28px;
       }
 
-      .gear-title {
-        font-size: 17px;
-        margin-bottom: 18px;
+      .distance-current,
+      .ratio-main {
+        font-size: 64px;
       }
 
-      .gear-distance-used {
-        font-size: 34px;
+      .distance-target,
+      .ratio-sub {
+        font-size: 24px;
       }
 
-      .gear-distance-total {
-        font-size: 15px;
-      }
-
-      .life-bar {
-        width: 200px;
-      }
-
-      .life-percent-window {
-        height: 26px;
-      }
-
-      .life-percent-number {
+      .progress-text,
+      .tracked {
         font-size: 22px;
       }
 
-      .number-stack span {
-        height: 26px;
-        line-height: 26px;
+      .progress-number {
+        font-size: 40px;
       }
 
-      .life-percent-number.frame {
-        --slide-distance: -416px;
-      }
-
-      .life-percent-number.wheel {
-        --slide-distance: -1248px;
-      }
-
-      .life-percent-mark {
-        font-size: 13px;
-      }
-
-      .life-text,
-      .life-tracked {
-        font-size: 12px;
-      }
-
-      .footer {
-        margin-top: 32px;
-        font-size: 11px;
+      .specs {
+        font-size: 18px;
       }
     }
   </style>
@@ -462,109 +354,24 @@
   </nav>
 
   <main>
-
     <section class="content">
-
       <h1 class="page-title">Gears</h1>
-      <p class="page-description">Tracking maintenance timing</p>
 
-      <section class="gear-section">
+      <div id="gear-list"></div>
 
-        <h2 class="gear-title">LEADER 735TR</h2>
-
-        <div class="gear-image">
-          <img src="../GearsSample.JPG" alt="LEADER 735TR">
-        </div>
-
-        <div class="gear-meta">
-
-          <div class="gear-distance">
-            <span class="gear-distance-used">4,842</span>
-            <span class="gear-distance-total">/ 30,000 km</span>
-          </div>
-
-          <div class="life-bar">
-            <div class="life-bar-fill frame"></div>
-          </div>
-
-          <div class="life-status">
-            <div class="life-status-line">
-              <span class="life-percent-window">
-                <span class="life-percent-number frame">
-                  <span class="number-stack">
-                    <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
-                    <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
-                    <span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
-                    <span>15</span><span>16</span>
-                  </span>
-                </span>
-              </span>
-              <span class="life-percent-mark">%</span>
-              <span class="life-text">ridden toward overhaul</span>
-            </div>
-
-            <div class="life-tracked">Tracked from 2026.06.20</div>
-          </div>
-
-        </div>
-
-      </section>
-
-      <section class="gear-section">
-
-        <h2 class="gear-title">KMC Z410</h2>
-
-        <div class="gear-image">
-          <img src="../GearSample.JPG" alt="H PLUS SON Archetype">
-        </div>
-
-        <div class="gear-meta">
-
-          <div class="gear-distance">
-            <span class="gear-distance-used">4,842</span>
-            <span class="gear-distance-total">/ 10,000 km</span>
-          </div>
-
-          <div class="life-bar">
-            <div class="life-bar-fill wheel"></div>
-          </div>
-
-          <div class="life-status">
-            <div class="life-status-line">
-              <span class="life-percent-window">
-                <span class="life-percent-number wheel">
-                  <span class="number-stack">
-                    <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
-                    <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
-                    <span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
-                    <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span>
-                    <span>20</span><span>21</span><span>22</span><span>23</span><span>24</span>
-                    <span>25</span><span>26</span><span>27</span><span>28</span><span>29</span>
-                    <span>30</span><span>31</span><span>32</span><span>33</span><span>34</span>
-                    <span>35</span><span>36</span><span>37</span><span>38</span><span>39</span>
-                    <span>40</span><span>41</span><span>42</span><span>43</span><span>44</span>
-                    <span>45</span><span>46</span><span>47</span><span>48</span>
-                  </span>
-                </span>
-              </span>
-              <span class="life-percent-mark">%</span>
-              <span class="life-text">ridden toward replacement</span>
-            </div>
-
-            <div class="life-tracked">Tracked from 2026.06.20</div>
-          </div>
-
-        </div>
-
+      <section class="gear-card">
+        <h2 class="card-title">Gear ratio</h2>
+        <img class="gear-image" src="../Gear%20ratio.jpg" alt="Gear ratio">
+        <p class="ratio-main">3.27</p>
+        <p class="ratio-sub">49T / 15T</p>
+        <p class="ratio-sub">Skid point: 15</p>
       </section>
 
       <footer class="footer">
-        <span class="footer-update">UPDATED 7:35 AM</span>
-        <span class="footer-copy">©︎ 2026 Yuto Fukushima</span>
+        <span>UPDATED 7:35 AM</span>
+        <span>©︎ 2026 Yuto Fukushima</span>
       </footer>
-
     </section>
-
   </main>
 
   <script>
@@ -575,6 +382,139 @@
       menuButton.classList.toggle('is-open');
       mobileMenu.classList.toggle('is-open');
     });
+
+    const gears = [
+      {
+        title: 'Frame: LEADER 735TR',
+        image: '../Frame.jpg',
+        targetKm: 8000,
+        purpose: 'overhaul',
+        trackedFrom: '2026-06-20',
+        specs: ['Frame Weight:', 'Gross Weight: 8.8 kg']
+      },
+      {
+        title: 'Chain: KMC Z410',
+        image: '../Chain.jpg',
+        targetKm: 4000,
+        purpose: 'replacement',
+        trackedFrom: '2026-06-20'
+      },
+      {
+        title: 'Rear tire: GOOD YEAR EAGLE 700c x 25c',
+        image: '../Rear%20tire.jpg',
+        targetKm: 4000,
+        purpose: 'replacement',
+        trackedFrom: '2026-06-20'
+      },
+      {
+        title: 'Front tire: GOOD YEAR EAGLE 700c x 25c',
+        image: '../Front%20tire.jpg',
+        targetKm: 6500,
+        purpose: 'replacement',
+        trackedFrom: '2026-06-20'
+      },
+      {
+        title: 'BB: FSA BB-EVO8681',
+        image: '../BB.jpg',
+        targetKm: 15000,
+        purpose: 'replacement',
+        trackedFrom: '2026-06-20'
+      },
+      {
+        title: 'Chain ring: VISION NS TRACK 49T',
+        image: '../Chain%20ring.jpg',
+        targetKm: 20000,
+        purpose: 'replacement',
+        trackedFrom: '2026-06-20'
+      },
+      {
+        title: 'Cog: EURO-ASIA DELUXE 15T',
+        image: '../Cog.jpg',
+        targetKm: 15000,
+        purpose: 'replacement',
+        trackedFrom: '2026-06-20'
+      }
+    ];
+
+    async function loadRideData() {
+      try {
+        const response = await fetch('../data/rides.json');
+        const data = await response.json();
+        const rides = data.rides || [];
+
+        renderGears(rides);
+      } catch (error) {
+        console.error('Failed to load ride data:', error);
+        renderGears([]);
+      }
+    }
+
+    function renderGears(rides) {
+      const list = document.getElementById('gear-list');
+
+      list.innerHTML = gears.map((gear, index) => {
+        const totalDistance = getDistanceFrom(rides, gear.trackedFrom);
+        const progress = gear.targetKm > 0
+          ? Math.min(Math.round((totalDistance / gear.targetKm) * 100), 100)
+          : 0;
+
+        const specsHtml = gear.specs
+          ? `<div class="specs">${gear.specs.map(item => `<p>${item}</p>`).join('')}</div>`
+          : '';
+
+        return `
+          <section class="gear-card">
+            <h2 class="card-title">${gear.title}</h2>
+            <img class="gear-image" src="${gear.image}" alt="${gear.title}">
+            <div class="distance-row">
+              <span class="distance-current">${formatNumber(totalDistance)}</span>
+              <span class="distance-target">/ ${formatNumber(gear.targetKm)} km</span>
+            </div>
+            <div class="progress">
+              <div class="progress-fill" data-progress="${progress}"></div>
+            </div>
+            <p class="progress-text">
+              <span class="progress-number">${progress}</span>
+              % ridden toward ${gear.purpose}
+            </p>
+            <p class="tracked">Tracked from ${formatTrackedDate(gear.trackedFrom)}</p>
+            ${specsHtml}
+          </section>
+        `;
+      }).join('');
+
+      requestAnimationFrame(() => {
+        document.querySelectorAll('.progress-fill').forEach(bar => {
+          bar.style.width = `${bar.dataset.progress}%`;
+        });
+      });
+    }
+
+    function getDistanceFrom(rides, trackedFrom) {
+      const startDate = parseDate(trackedFrom);
+
+      const total = rides
+        .filter(ride => parseDate(ride.date) >= startDate)
+        .reduce((sum, ride) => sum + Number(ride.distanceKm || 0), 0);
+
+      return Math.round(total);
+    }
+
+    function parseDate(dateString) {
+      const normalized = dateString.replace(/\./g, '-');
+      const [year, month, day] = normalized.split('-').map(Number);
+      return new Date(year, month - 1, day);
+    }
+
+    function formatTrackedDate(dateString) {
+      return dateString.replace(/-/g, '.');
+    }
+
+    function formatNumber(value) {
+      return Math.round(Number(value || 0)).toLocaleString();
+    }
+
+    loadRideData();
   </script>
 
 </body>
