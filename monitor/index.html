@@ -26,23 +26,6 @@
       font-family: 'Geist Sans', sans-serif;
     }
 
-    .fixed-bg {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background-image: url("../bk01.jpg");
-      background-size: cover;
-      background-position: center top;
-      background-repeat: no-repeat;
-      opacity: 0;
-      transition: opacity 0.45s ease;
-      pointer-events: none;
-    }
-
-    .fixed-bg.is-visible {
-      opacity: 0.42;
-    }
-
     .site-title {
       position: fixed;
       top: 28px;
@@ -412,8 +395,6 @@
 
 <body>
 
-  <div class="fixed-bg"></div>
-
   <h1 class="site-title">
     <a href="/">On 735</a>
   </h1>
@@ -552,23 +533,6 @@
       menuButton.classList.toggle('is-open');
       mobileMenu.classList.toggle('is-open');
     });
-
-    const fixedBg = document.querySelector('.fixed-bg');
-    const bgTrigger = document.querySelector('.bg-trigger');
-
-    const toggleBackground = () => {
-      const triggerTop = bgTrigger.getBoundingClientRect().top;
-
-      if (triggerTop <= window.innerHeight * 0.72) {
-        fixedBg.classList.add('is-visible');
-      } else {
-        fixedBg.classList.remove('is-visible');
-      }
-    };
-
-    window.addEventListener('scroll', toggleBackground);
-    window.addEventListener('resize', toggleBackground);
-    window.addEventListener('load', toggleBackground);
 
     async function loadRideData() {
       try {
