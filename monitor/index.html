@@ -616,14 +616,22 @@
       return Math.round(Math.max(...values));
     }
 
-    function updateDistance(id, value) {
-      document.getElementById(id).textContent =
-        Math.round(Number(value || 0)).toLocaleString();
+    function formatValue(value) {
+      const number = Number(value || 0);
+      
+      if (number === 0) {
+        return '0';
+      }
+      
+      return number.toFixed(1);
     }
-
+    
+    function updateDistance(id, value) {
+      document.getElementById(id).textContent = formatValue(value);
+    }
+    
     function updateMax(id, value) {
-      document.getElementById(id).textContent =
-        Math.round(Number(value || 0)).toLocaleString();
+      document.getElementById(id).textContent = formatValue(value);
     }
 
     loadRideData();
