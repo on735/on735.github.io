@@ -24,6 +24,22 @@
       background: var(--bg);
       color: var(--secondary);
       font-family: 'Geist Sans', sans-serif;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 33.333vw;
+      height: 100vh;
+      background-image: url("bk01.svg");
+      background-size: cover;
+      background-position: left top;
+      background-repeat: no-repeat;
+      z-index: -1;
+      pointer-events: none;
     }
 
     .site-title {
@@ -79,18 +95,6 @@
       min-height: 100vh;
       padding: 104px 48px 64px;
       box-sizing: border-box;
-    }
-    
-    .hero {
-      width: 100vw;
-      margin-left: calc(50% - 50vw);
-      margin-top: -120px;
-    }
-    
-    .hero img {
-      display: block;
-      width: 100%;
-      height: auto;
     }
     
       display: none;
@@ -335,18 +339,6 @@
         padding: 76px 0 64px;
       }
 
-      .hero {
-        display: block;
-        width: 100%;
-        margin: 0 0 36px;
-      }
-
-      .hero img {
-        width: 100%;
-        height: auto;
-        display: block;
-      }
-
       .intro {
         margin: 0 24px 64px;
       }
@@ -432,9 +424,6 @@
   </nav>
 
   <main>
-    <section class="hero">
-      <img src="bk01.svg" alt="">
-    </section>
 
     <div class="hero">
       <img src="hero.jpg.jpg" alt="On 735 ride visual">
