@@ -27,19 +27,28 @@
       position: relative;
     }
 
-    body::before {
-      content: "";
+    .side-bg {
       position: absolute;
       top: 0;
       left: 0;
-      width: 33.333vw;
+      width: 33vw;
       height: 100vh;
       background-image: url("bk01.svg");
-      background-size: cover;
-      background-position: left top;
       background-repeat: no-repeat;
-      z-index: -1;
+      background-position: top left;
+      background-size: contain;
       pointer-events: none;
+      z-index: 0;
+    }
+    
+    .site-title,
+    .desktop-nav,
+    .menu-button,
+    .mobile-menu,
+    main,
+    footer {
+      position: relative;
+      z-index: 1;
     }
 
     .site-title {
@@ -401,6 +410,8 @@
 
 <body>
 
+  <div class="side-bg"></div>
+
   <h1 class="site-title">
     <a href="/">On 735</a>
   </h1>
@@ -424,10 +435,6 @@
   </nav>
 
   <main>
-
-    <div class="hero">
-      <img src="hero.jpg.jpg" alt="On 735 ride visual">
-    </div>
 
     <section class="intro">
       <h1 class="page-title">Monitor</h1>
