@@ -33,15 +33,13 @@ body {
   left: 0;
   width: 50vw;
   height: 100vh;
-
   background-image: url("bk01.svg");
   background-repeat: no-repeat;
   background-position: top left;
   background-size: 100% auto;
-
   pointer-events: none;
   z-index: 0;
-  filter: brightness(0.9);
+  will-change: transform;
 }
 
 .site-title,
@@ -657,6 +655,19 @@ h2 {
     }
 
     loadRideData();
+    
+    const sideBg = document.querySelector('.side-bg');
+
+function updateSideBgParallax() {
+  if (!sideBg) return;
+
+  const scrollY = window.scrollY || window.pageYOffset;
+  sideBg.style.transform = `translateY(${scrollY * 0.5}px)`;
+}
+
+window.addEventListener('scroll', updateSideBgParallax);
+window.addEventListener('load', updateSideBgParallax);
+
   </script>
 
 </body>
