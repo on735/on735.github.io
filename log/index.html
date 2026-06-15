@@ -25,6 +25,33 @@
       font-family: 'Geist Sans', sans-serif;
     }
 
+    .log-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      
+      width: 100vw;
+      height: 100vh;
+      
+      background-image: url("bk02.svg");
+      background-repeat: no-repeat;
+      background-position: top center;
+      background-size: cover;
+      
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .site-title,
+    .desktop-nav,
+    .menu-button,
+    .mobile-menu,
+    main,
+    footer {
+      position: relative;
+      z-index: 1;
+    }
+
     .site-title {
       position: fixed;
       top: 28px;
@@ -278,6 +305,8 @@
 </head>
 
 <body>
+
+  <div class="log-bg"></div>
 
   <h1 class="site-title">
     <a href="/">On 735</a>
