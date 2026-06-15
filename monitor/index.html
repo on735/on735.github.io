@@ -556,7 +556,7 @@ h2 {
 
     async function loadRideData() {
       try {
-        const response = await fetch('./data/rides.json');
+        const response = await fetch('../data/rides.json');
         const data = await response.json();
         const rides = data.rides || [];
 
