@@ -662,7 +662,7 @@ function updateSideBgParallax() {
   if (!sideBg) return;
 
   const scrollY = window.scrollY || window.pageYOffset;
-  sideBg.style.transform = `translateY(${scrollY * 0.5}px)`;
+  sideBg.style.transform = `translateY(${scrollY * 0.35}px)`;
 }
 
 window.addEventListener('scroll', updateSideBgParallax);
