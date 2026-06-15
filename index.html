@@ -58,19 +58,12 @@ footer {
   left: 32px;
   z-index: 10;
   margin: 0;
-  font-size: 28px;
-  font-weight: 800;
-  letter-spacing: -0.03em;
 }
 
-.site-title a {
-  color: var(--secondary);
-  text-decoration: none;
-}
-
-.site-title a:visited,
-.site-title a:hover {
-  color: var(--secondary);
+.site-title img {
+  display: block;
+  height: 23px;
+  width: auto;
 }
 
 .desktop-nav {
@@ -277,7 +270,7 @@ h2 {
   
 .menu-button {
   position: fixed;
-  top: 24px;
+  top: 30px;
   right: 24px;
   z-index: 20;
 
@@ -285,8 +278,8 @@ h2 {
   align-items: center;
   justify-content: center;
 
-  width: 31.5px;
-  height: 21.6px;
+  width: 34px;
+  height: 21px;
 
   padding: 0;
   background: none;
@@ -295,9 +288,9 @@ h2 {
 
 .menu-icon {
   display: block;
-  width: 31.5px;
-  height: 21.6px;
-  background-image: url("menu01.svg");
+  width: 34px;
+  height: 21px;
+  background-image: url("menu.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -426,7 +419,9 @@ h2 {
   <div class="side-bg"></div>
 
   <h1 class="site-title">
-    <a href="/">On 735</a>
+    <a href="/">
+      <img src="logo.svg" alt="On 735">
+    </a>
   </h1>
 
   <nav class="desktop-nav">
