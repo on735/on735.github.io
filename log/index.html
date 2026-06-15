@@ -40,7 +40,6 @@
       
       pointer-events: none;
       z-index: 0;
-      filter: brightness(0.3);
     }
 
     .site-title,
@@ -56,17 +55,15 @@
     .site-title {
       position: fixed;
       top: 28px;
-      left: 32px;
+      left: 24px;
       z-index: 10;
       margin: 0;
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
     }
-
-    .site-title a {
-      color: var(--secondary);
-      text-decoration: none;
+    
+    .site-title img {
+      display: block;
+      height: 23px;
+      width: auto;
     }
 
     .desktop-nav {
@@ -199,7 +196,7 @@
 
     @media (max-width: 767px) {
       .site-title {
-        top: 20px;
+        top: 28px;
         left: 24px;
         font-size: 26px;
       }
@@ -210,41 +207,58 @@
 
       .menu-button {
         position: fixed;
-        top: 27px;
+        top: 30px;
         right: 24px;
         z-index: 20;
+        
         display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 5px;
-        width: 35px;
+        align-items: center;
+        justify-content: center;
+        
+        width: 34px;
+        height: 21px;
+        
         padding: 0;
         background: none;
         border: none;
       }
-
-      .menu-line {
+      
+      .menu-icon {
+        display: block;
+        width: 34px;
+        height: 21px;
+        background-image: url("menu.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        transition: opacity 0.2s ease;
+      }
+      
+      .menu-x-line {
+        position: absolute;
+        top: 11px;
+        right: 0;
+        width: 28px;
         height: 2px;
         background: var(--secondary);
-        transition: 0.2s ease;
+        opacity: 0;
+        transition: transform 0.2s ease, opacity 0.2s ease;
       }
-
-      .menu-line:nth-child(1) { width: 35px; }
-      .menu-line:nth-child(2) { width: 15px; }
-      .menu-line:nth-child(3) { width: 25px; }
-
-      .menu-button.is-open .menu-line:nth-child(1) {
-        width: 28px;
-        transform: translateY(7px) rotate(45deg);
-      }
-
-      .menu-button.is-open .menu-line:nth-child(2) {
+      
+      .menu-button.is-open .menu-icon {
         opacity: 0;
       }
-
-      .menu-button.is-open .menu-line:nth-child(3) {
-        width: 28px;
-        transform: translateY(-7px) rotate(-45deg);
+      
+      .menu-button.is-open .menu-x-line {
+        opacity: 1;
+      }
+      
+      .menu-button.is-open .menu-x-line:nth-child(2) {
+        transform: rotate(45deg);
+      }
+      
+      .menu-button.is-open .menu-x-line:nth-child(3) {
+        transform: rotate(-45deg);
       }
 
       .mobile-menu {
@@ -310,7 +324,9 @@
   <div class="log-bg"></div>
 
   <h1 class="site-title">
-    <a href="/">On 735</a>
+    <a href="/">
+      <img src="logo.svg" alt="On 735">
+    </a>
   </h1>
 
   <nav class="desktop-nav">
