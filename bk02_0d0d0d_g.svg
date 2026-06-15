@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_1" data-name="レイヤー 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1288 2409.598">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#_名称未設定グラデーション_58-2);
+      }
+
+      .cls-2 {
+        fill: url(#_名称未設定グラデーション_58);
+      }
+    </style>
+    <linearGradient id="_名称未設定グラデーション_58" data-name="名称未設定グラデーション 58" x1="322.703" y1="1205.255" x2="252.148" y2="1186.35" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0d0d0d"/>
+      <stop offset="1" stop-color="#000"/>
+    </linearGradient>
+    <linearGradient id="_名称未設定グラデーション_58-2" data-name="名称未設定グラデーション 58" x1="960.703" y1="1205.255" x2="890.148" y2="1186.35" gradientTransform="translate(1926) scale(-1 1)" xlink:href="#_名称未設定グラデーション_58"/>
+  </defs>
+  <polygon class="cls-2" points="0 2127.38 0 2409.598 642 0 639.81 0 0 2127.38"/>
+  <polygon class="cls-1" points="1288 2127.38 1288 2409.598 646 0 648.19 0 1288 2127.38"/>
+</svg>
