@@ -213,6 +213,7 @@
     }
 
     .progress-number {
+      display: block;
       color: var(--primary);
       font-size: 38px;
       font-weight: 700;
@@ -220,8 +221,18 @@
       letter-spacing: -0.04em;
     }
 
+    .progress-label {
+      display: block;
+      color: var(--secondary);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      opacity: 0.8;
+    }
+
     .tracked {
-      margin: 2px 0 0;
+      margin: 16px 0 0;
     }
 
     .specs {
@@ -535,10 +546,14 @@
               <div class="progress-fill" data-progress="${progress}"></div>
             </div>
             <p class="progress-line">
-              <span class="progress-number">${progress}</span>
-              <span class="meta-text">% ridden toward ${gear.purpose}</span>
+              <span class="progress-number">${progress}%</span>
+              <span class="progress-label">toward ${gear.purpose}</span>
             </p>
-            <p class="tracked meta-text">Tracked from ${formatTrackedDate(gear.trackedFrom)}</p>
+            
+            <p class="tracked meta-text">
+              since ${formatTrackedDate(gear.trackedFrom)}
+            </p>
+            
             ${specsHtml}
           </section>
         `;
