@@ -145,7 +145,7 @@
       line-height: 1.4;
       letter-spacing: -0.01em;
       color: var(--secondary);
-      opacity: 0.8;
+      opacity: 1;
     }
 
     .gear-card {
@@ -189,7 +189,7 @@
       font-weight: 400;
       line-height: 1.45;
       letter-spacing: -0.01em;
-      opacity: 0.8;
+      opacity: 1;
     }
 
     .progress {
@@ -219,6 +219,14 @@
       font-weight: 700;
       line-height: 1;
       letter-spacing: -0.04em;
+    }
+
+    .progress-percent {
+      color: var(--secondary);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.45;
+      letter-spacing: -0.01em;
     }
 
     .progress-label {
@@ -546,7 +554,9 @@
               <div class="progress-fill" data-progress="${progress}"></div>
             </div>
             <p class="progress-line">
-              <span class="progress-number">${progress}%</span>
+              <span class="progress-number">
+                ${progress}<span class="progress-percent">%</span>
+              </span>
               <span class="progress-label">toward ${gear.purpose}</span>
             </p>
             
