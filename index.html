@@ -268,61 +268,58 @@
     display: none;
   }
   
-.menu-button {
-  position: fixed;
-  top: 30px;
-  right: 24px;
-  z-index: 20;
+  .menu-button {
+    position: fixed;
+    top: 30px;
+    right: 24px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 21px;
+    padding: 0;
+    background: none;
+    border: none;
+  }
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  .menu-icon {
+    display: block;
+    width: 34px;
+    height: 21px;
+    background-image: url("menu.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    transition: opacity 0.2s ease;
+  }
 
-  width: 34px;
-  height: 21px;
+  .menu-x-line {
+    position: absolute;
+    top: 11px;
+    right: 0;
+    width: 28px;
+    height: 2px;
+    background: var(--secondary);
+    opacity: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
 
-  padding: 0;
-  background: none;
-  border: none;
-}
+  .menu-button.is-open .menu-icon {
+    opacity: 0;
+  }
 
-.menu-icon {
-  display: block;
-  width: 34px;
-  height: 21px;
-  background-image: url("menu.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  transition: opacity 0.2s ease;
-}
+  .menu-button.is-open .menu-x-line {
+    opacity: 1;
+  }
 
-.menu-x-line {
-  position: absolute;
-  top: 11px;
-  right: 0;
-  width: 28px;
-  height: 2px;
-  background: var(--secondary);
-  opacity: 0;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
+  .menu-button.is-open .menu-x-line:nth-child(2) {
+    transform: rotate(45deg);
+  }
 
-.menu-button.is-open .menu-icon {
-  opacity: 0;
-}
-
-.menu-button.is-open .menu-x-line {
-  opacity: 1;
-}
-
-.menu-button.is-open .menu-x-line:nth-child(2) {
-  transform: rotate(45deg);
-}
-
-.menu-button.is-open .menu-x-line:nth-child(3) {
-  transform: rotate(-45deg);
-}
+  .menu-button.is-open .menu-x-line:nth-child(3) {
+    transform: rotate(-45deg);
+  }
 
   .mobile-menu {
     position: fixed;
@@ -354,10 +351,6 @@
     max-width: none;
     margin: 0 0 48px auto;
     text-align: right;
-  }
-
-  .content {
-    margin: 0 24px;
   }
 
   .page-title {
