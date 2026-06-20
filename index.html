@@ -257,157 +257,157 @@
       white-space: nowrap;
     }
 
-@media (max-width: 767px) {
-  .site-title {
-    top: 30px;
-    left: 24px;
-    font-size: 26px;
-  }
+  @media (max-width: 767px) {
+    .site-title {
+      top: 30px;
+      left: 24px;
+      font-size: 26px;
+    }
 
-  .desktop-nav {
-    display: none;
-  }
+    .desktop-nav {
+      display: none;
+    }
   
-  .menu-button {
-    position: fixed;
-    top: 30px;
-    right: 24px;
-    z-index: 20;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 21px;
-    padding: 0;
-    background: none;
-    border: none;
-  }
+    .menu-button {
+      position: fixed;
+      top: 30px;
+      right: 24px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 21px;
+      padding: 0;
+      background: none;
+      border: none;
+    }
 
-  .menu-icon {
-    display: block;
-    width: 34px;
-    height: 21px;
-    background-image: url("menu.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    transition: opacity 0.2s ease;
-  }
+    .menu-icon {
+      display: block;
+      width: 34px;
+      height: 21px;
+      background-image: url("menu.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      transition: opacity 0.2s ease;
+    }
 
-  .menu-x-line {
-    position: absolute;
-    top: 11px;
-    right: 0;
-    width: 28px;
-    height: 2px;
-    background: var(--secondary);
-    opacity: 0;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-  }
+    .menu-x-line {
+      position: absolute;
+      top: 11px;
+      right: 0;
+      width: 28px;
+      height: 2px;
+      background: var(--secondary);
+      opacity: 0;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
 
-  .menu-button.is-open .menu-icon {
-    opacity: 0;
-  }
+    .menu-button.is-open .menu-icon {
+      opacity: 0;
+    }
 
-  .menu-button.is-open .menu-x-line {
-    opacity: 1;
-  }
+    .menu-button.is-open .menu-x-line {
+      opacity: 1;
+    }
 
-  .menu-button.is-open .menu-x-line:nth-child(2) {
-    transform: rotate(45deg);
-  }
+    .menu-button.is-open .menu-x-line:nth-child(2) {
+      transform: rotate(45deg);
+    }
 
-  .menu-button.is-open .menu-x-line:nth-child(3) {
-    transform: rotate(-45deg);
-  }
+    .menu-button.is-open .menu-x-line:nth-child(3) {
+      transform: rotate(-45deg);
+    }
 
-  .mobile-menu {
-    position: fixed;
-    top: 55px;
-    right: 0;
-    z-index: 15;
-    display: none;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 16px;
-    width: 42vw;
-    padding: 20px 24px 20px 0;
-    box-sizing: border-box;
-    background: rgba(0, 0, 0, 0.8);
-    text-align: right;
-    font-size: 18px;
-    font-weight: 700;
-  }
+    .mobile-menu {
+      position: fixed;
+      top: 55px;
+      right: 0;
+      z-index: 15;
+      display: none;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 16px;
+      width: 42vw;
+      padding: 20px 24px 20px 0;
+      box-sizing: border-box;
+      background: rgba(0, 0, 0, 0.8);
+      text-align: right;
+      font-size: 18px;
+      font-weight: 700;
+    }
 
-  .mobile-menu.is-open {
-    display: flex;
-  }
+    .mobile-menu.is-open {
+      display: flex;
+    }
 
-  main {
-    padding: 76px 24px 64px;
-  }
+    main {
+      padding: 76px 24px 64px;
+    }
 
-  .intro {
-    max-width: none;
-    margin: 0 0 48px auto;
-    text-align: right;
-  }
+    .intro {
+      max-width: none;
+      margin: 0 0 48px auto;
+      text-align: right;
+    }
 
-  .page-title {
-    font-size: 34px;
-    text-align: right;
-  }
+    .page-title {
+      font-size: 34px;
+      text-align: right;
+    }
 
-  .intro p {
-    font-size: 14px;
-    text-align: right;
-  }
+    .intro p {
+      font-size: 14px;
+      text-align: right;
+    }
 
-  .odo-section {
-    margin: 0;
-  }
+    .odo-section {
+      margin: 0;
+    }
 
-  .odo {
-    font-size: 96px;
-  }
+    .odo {
+      font-size: 96px;
+    }
 
-  .cards {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 48px 28px;
-    margin-top: 56px;
-  }
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 48px 28px;
+      margin-top: 56px;
+    }
 
-  .card {
-    padding: 0 4px;
-  }
+    .card {
+      padding: 0 4px;
+    }
 
-  h2 {
-    font-size: 17px;
-  }
+    h2 {
+      font-size: 17px;
+    }
 
-  .metric-value {
-    font-size: 34px;
-  }
+    .metric-value {
+      font-size: 34px;
+    }
 
-  .metric-label,
-  .metric-unit,
-  .metric {
-    font-size: 14px;
-  }
+    .metric-label,
+    .metric-unit,
+    .metric {
+      font-size: 14px;
+    }
 
-  .me-section {
-    margin-top: 80px;
-  }
+    .me-section {
+      margin-top: 80px;
+    }
 
-  .me-description {
-    font-size: 14px;
-  }
+    .me-description {
+      font-size: 14px;
+    }
 
-  .footer {
-    margin-top: 32px;
-    font-size: 11px;
+    .footer {
+      margin-top: 32px;
+      font-size: 11px;
+    }
   }
-}
   </style>
 </head>
 
