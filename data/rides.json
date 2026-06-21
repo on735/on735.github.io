@@ -1,101 +1,11 @@
 {
-  "updatedAt": "2026-06-20T07:35:00+09:00",
+  "updatedAt": "2026-06-21T07:35:00+09:00",
   "rides": [
     {
-      "date": "2026-06-02",
-      "distanceKm": 3.2,
-      "maxSpeedKmh": 32.1,
-      "avgSpeedKmh": 15.4
-    },
-    {
-      "date": "2026-06-03",
-      "distanceKm": 1.34,
-      "maxSpeedKmh": 30.2,
-      "avgSpeedKmh": 14.9
-    },
-    {
-      "date": "2026-06-04",
-      "distanceKm": 1.43,
-      "maxSpeedKmh": 23.3,
-      "avgSpeedKmh": 15.6
-    },
-    {
-      "date": "2026-06-05",
-      "distanceKm": 9.68,
-      "maxSpeedKmh": 34.1,
-      "avgSpeedKmh": 12.7
-    },
-    {
-      "date": "2026-06-06",
-      "distanceKm": 1.16,
-      "maxSpeedKmh": 17.3,
-      "avgSpeedKmh": 12.0
-    },
-    {
-      "date": "2026-06-07",
-      "distanceKm": 1.35,
-      "maxSpeedKmh": 25.9,
-      "avgSpeedKmh": 14.3
-    },
-    {
-      "date": "2026-06-08",
-      "distanceKm": 3.09,
-      "maxSpeedKmh": 23.6,
-      "avgSpeedKmh": 14.8
-    },
-    {
-      "date": "2026-06-09",
-      "distanceKm": 3.0,
-      "maxSpeedKmh": 23.5,
-      "avgSpeedKmh": 13.9
-    },
-    {
-      "date": "2026-06-10",
-      "distanceKm": 3.85,
-      "maxSpeedKmh": 35.9,
-      "avgSpeedKmh": 15.6
-    },
-    {
-      "date": "2026-06-11",
-      "distanceKm": 3.52,
-      "maxSpeedKmh": 22.7,
-      "avgSpeedKmh": 12.8
-    },
-    {
-      "date": "2026-06-12",
-      "distanceKm": 3.21,
-      "maxSpeedKmh": 23.0,
-      "avgSpeedKmh": 11.9
-    },
-    {
-      "date": "2026-06-13",
-      "distanceKm": 1.07,
-      "maxSpeedKmh": 16.1,
-      "avgSpeedKmh": 11.1
-    },
-    {
-      "date": "2026-06-14",
-      "distanceKm": 1.34,
-      "maxSpeedKmh": 16.5,
-      "avgSpeedKmh": 13.1
-    },
-    {
-      "date": "2026-06-15",
-      "distanceKm": 1.81,
-      "maxSpeedKmh": 22.9,
-      "avgSpeedKmh": 14.2
-    },
-    {
-      "date": "2026-06-16",
-      "distanceKm": 3.21,
-      "maxSpeedKmh": 34.1,
-      "avgSpeedKmh": 16.0
-    },
-    {
-      "date": "2026-06-17",
-      "distanceKm": 3.13,
-      "maxSpeedKmh": 24.8,
-      "avgSpeedKmh": 14.5
+      "date": "2026-06-21",
+      "distanceKm": 2.67,
+      "maxSpeedKmh": 17.9,
+      "avgSpeedKmh": 11.2
     }
   ]
 }
