@@ -49,10 +49,34 @@ for activity in activities:
     daily[activity_date]["avgSpeedKmhTotal"] += avg_speed_kmh
     daily[activity_date]["activityCount"] += 1
 
+if len(daily) == 0:
+    raise Exception("No ride data found. Stop update to avoid overwriting rides.json.")
+
+first_day = min(date.fromisoformat(d) for d in daily.keys())
+current_day = first_day
+
+while current_day <= end_date:
+    key = current_day.isoformat()
+
+    if key not in daily:
+        daily[key] = {
+            "date": key,
+            "distanceKm": 0,
+            "maxSpeedKmh": 0,
+            "avgSpeedKmhTotal": 0,
+            "activityCount": 0
+        }
+
+    current_day += timedelta(days=1)
+
 rides = []
 
 for item in daily.values():
-    avg_speed = item["avgSpeedKmhTotal"] / item["activityCount"]
+    avg_speed = (
+        item["avgSpeedKmhTotal"] / item["activityCount"]
+        if item["activityCount"] > 0
+        else 0
+    )
 
     rides.append({
         "date": item["date"],
