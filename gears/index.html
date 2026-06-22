@@ -525,7 +525,7 @@
       list.innerHTML = gears.map((gear) => {
         const totalDistance = getDistanceFrom(rides, gear.trackedFrom);
         const progress = gear.targetKm > 0
-          ? Math.min(Math.round((totalDistance / gear.targetKm) * 100), 100)
+          ? Math.min((totalDistance / gear.targetKm) * 100, 100)
           : 0;
 
         const specsHtml = gear.specs
@@ -537,7 +537,7 @@
             <h2 class="card-title">${gear.title}</h2>
             <img class="gear-image" src="${gear.image}" alt="${gear.title}">
             <div class="distance-row">
-              <span class="distance-current">${formatNumber(totalDistance)}</span>
+              <span class="distance-current">${formatDecimal(totalDistance)}</span>
               <span class="distance-target">/ ${formatNumber(gear.targetKm)} km</span>
             </div>
             <div class="progress">
@@ -545,7 +545,7 @@
             </div>
             <p class="progress-line">
               <span class="progress-number">
-                ${progress} <span class="progress-percent">%</span>
+                ${formatDecimal(progress)} <span class="progress-percent">%</span>
               </span>
               <span class="progress-label">toward ${gear.purpose}</span>
             </p>
@@ -573,7 +573,7 @@
         .filter(ride => parseDate(ride.date) >= startDate)
         .reduce((sum, ride) => sum + Number(ride.distanceKm || 0), 0);
 
-      return Math.round(total);
+      return total;
     }
 
     function parseDate(dateString) {
@@ -588,6 +588,14 @@
 
     function formatNumber(value) {
       return Math.round(Number(value || 0)).toLocaleString();
+    }
+
+    function formatDecimal(value) {
+      const number = Number(value || 0);
+      return number.toLocaleString(undefined, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1
+      });
     }
 
     loadRideData();
