@@ -192,6 +192,10 @@
       white-space: nowrap;
     }
 
+    .log-date {
+      color: rgba(255, 255, 255, 0.735);
+    }
+
     .value {
       color: var(--primary);
       font-weight: 700;
@@ -438,7 +442,7 @@
 
           return `
             <div class="log-row">
-              <span>${date}</span>
+              <span class="log-date">${date}</span>
               <span class="value">${distance} km</span>
               <span class="value">${maxSpeed} km/h</span>
               <span class="value">${avgSpeed} km/h</span>
