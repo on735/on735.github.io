@@ -167,6 +167,19 @@
       line-height: 1;
       letter-spacing: -0.06em;
     }
+    
+    .ride-time-wrapper {
+      margin-top: 40px;
+      text-align: right;
+    }
+    
+    .ride-time {
+      color: var(--primary);
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
 
     .unit {
       margin-top: -4px;
@@ -456,6 +469,11 @@
         <div class="odo" id="life-latest">0</div>
         <div class="unit">km</div>
       </div>
+      
+      <div class="ride-time-wrapper">
+        <div class="label">Ride Time</div>
+        <div class="ride-time" id="life-ride-time">0d 00:00</div>
+      </div>
 
       <div class="cards">
 
@@ -573,6 +591,10 @@
         const yearStart = new Date(yesterday.getFullYear(), 0, 1);
 
         const lifeLatest = rides.reduce((sum, ride) => sum + Number(ride.distanceKm || 0), 0);
+        const lifeRideSeconds = rides.reduce(
+          (sum, ride) => sum + Number(ride.elapsedSeconds || 0),
+          0
+        );
 
         const yesterdayRide = rides.find(ride => isSameDate(ride.date, yesterday));
 
@@ -581,6 +603,8 @@
         const yearRides = rides.filter(ride => isBetween(ride.date, yearStart, yesterday));
 
         updateDistance('life-latest', lifeLatest);
+        document.getElementById('life-ride-time').textContent =
+        　formatRideTime(lifeRideSeconds);
 
         updateDistance('yesterday-distance', yesterdayRide ? yesterdayRide.distanceKm : 0);
         updateMax('yesterday-max', yesterdayRide ? yesterdayRide.maxSpeedKmh : 0);
@@ -663,6 +687,16 @@ function updateSideBgParallax() {
 
   const scrollY = window.scrollY || window.pageYOffset;
   sideBg.style.transform = `translateY(${scrollY * 0.75}px)`;
+}
+
+function formatRideTime(totalSeconds) {
+  const seconds = Number(totalSeconds || 0);
+
+  const days = Math.floor(seconds / 86400);
+  const hours = Math.floor((seconds % 86400) / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+
+  return `${days}d ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
 }
 
 window.addEventListener('scroll', updateSideBgParallax);
