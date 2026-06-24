@@ -16,6 +16,7 @@
     :root {
       --bg: #000000;
       --primary: #7e3de5;
+      --primary-rgb: 126, 61, 229;
       --secondary: #ffffff;
     }
 
@@ -143,8 +144,11 @@
       width: 100%;
       height: 1px;
       margin: 16px 0 24px;
-      background: var(--secondary);
-      opacity: 1;
+      background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 1)
+      );
     }
 
     .odo-wrapper {
@@ -157,7 +161,7 @@
       color: var(--secondary);
       font-size: 18px;
       letter-spacing: -0.01em;
-      opacity: 1;
+      opacity: 0.735;
     }
 
     .odo {
@@ -167,13 +171,100 @@
       line-height: 1;
       letter-spacing: -0.06em;
     }
+    
+    .ride-time-wrapper {
+      margin-top: 40px;
+      text-align: right;
+    }
+    
+    .ride-time {
+      color: var(--primary);
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+    
+    .latest-chart {
+      margin-top: 56px;
+    }
+    
+    .chart-title {
+      margin: 0;
+      text-align: right;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    
+    .chart-line {
+      width: 100%;
+      height: 1px;
+      margin: 16px 0 24px;
+      background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 1)
+      );
+    }
+    
+    .chart-bars {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 6px;
+      height: 120px;
+      margin-top: 44px;
+      margin-bottom: 44px;
+    }
+    
+    .chart-day {
+      flex: 1;
+      min-width: 0;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+    }
+    
+    .chart-bar {
+      width: 100%;
+      background: linear-gradient(
+      to right,
+      rgba(var(--primary-rgb), 0.5),
+      rgba(var(--primary-rgb), 1)
+      );
+    }
+    
+    .chart-value {
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--secondary);
+      font-size: 10px;
+      line-height: 1;
+      white-space: nowrap;
+      opacity: 0.735;
+    }
+    
+    .chart-date {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--secondary);
+      font-size: 10px;
+      line-height: 1;
+      white-space: nowrap;
+      opacity: 0.735;
+    }
 
     .unit {
       margin-top: -4px;
       font-size: 18px;
-      letter-spacing: 0.08em;
+      letter-spacing: -0.01em;
       color: var(--secondary);
-      opacity: 1;
+      opacity: 0.735;
     }
 
     .cards {
@@ -193,8 +284,11 @@
       width: 100%;
       height: 1px;
       margin: 2px 0 8px;
-      background: var(--secondary);
-      opacity: 1;
+      background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 1)
+      );
     }
 
     .metric {
@@ -204,13 +298,14 @@
       gap: 6px;
       font-size: 14px;
       color: var(--secondary);
+      opacity: 1;
     }
 
     .metric-label,
     .metric-unit {
       color: var(--secondary);
       font-size: 14px;
-      opacity: 1;
+      opacity: 0.735;
     }
 
     .metric-value {
@@ -230,7 +325,7 @@
       line-height: 1.7;
       letter-spacing: -0.01em;
       color: var(--secondary);
-      opacity: 1;
+      opacity: 0.735;
     }
 
     .me-description p {
@@ -452,9 +547,20 @@
       <div class="section-line"></div>
 
       <div class="odo-wrapper">
-        <div class="label">Total Distance</div>
+        <div class="label">Total distance</div>
         <div class="odo" id="life-latest">0</div>
         <div class="unit">km</div>
+      </div>
+      
+      <div class="ride-time-wrapper">
+        <div class="label">Total ride time</div>
+        <div class="ride-time" id="life-ride-time">0d 00:00</div>
+      </div>
+      
+      <div class="latest-chart">
+        <h3 class="chart-title">Latest 15 days</h3>
+        <div class="chart-line"></div>
+        <div class="chart-bars" id="latest-15-chart"></div>
       </div>
 
       <div class="cards">
@@ -475,45 +581,39 @@
         </div>
 
         <div class="card">
-          <h2>This Week</h2>
+          <h2>This week</h2>
           <div class="card-line"></div>
           <div class="metric">
-            <span class="metric-label">Distance</span>
             <span class="metric-value" id="week-distance">0</span>
             <span class="metric-unit">km</span>
           </div>
           <div class="metric">
-            <span class="metric-label">Max</span>
             <span class="metric-value" id="week-max">0</span>
             <span class="metric-unit">km/h</span>
           </div>
         </div>
 
         <div class="card">
-          <h2>This Month</h2>
+          <h2>This month</h2>
           <div class="card-line"></div>
           <div class="metric">
-            <span class="metric-label">Distance</span>
             <span class="metric-value" id="month-distance">0</span>
             <span class="metric-unit">km</span>
           </div>
           <div class="metric">
-            <span class="metric-label">Max</span>
             <span class="metric-value" id="month-max">0</span>
             <span class="metric-unit">km/h</span>
           </div>
         </div>
 
         <div class="card">
-          <h2>This Year</h2>
+          <h2>This year</h2>
           <div class="card-line"></div>
           <div class="metric">
-            <span class="metric-label">Distance</span>
             <span class="metric-value" id="year-distance">0</span>
             <span class="metric-unit">km</span>
           </div>
           <div class="metric">
-            <span class="metric-label">Max</span>
             <span class="metric-value" id="year-max">0</span>
             <span class="metric-unit">km/h</span>
           </div>
@@ -527,9 +627,7 @@
 
         <div class="me-description">
           <p class="me-name">Yuto Fukushima</p>
-          <p>I’m a husband, a father and a 735 rider</p>
-          <p>Riding 8 different bikes over the past 32 years</p>
-          <p>Started this log with my 735 in June 2026</p>
+          <p>On 735 or on Earth</p>
         </div>
       </section>
 
@@ -573,6 +671,10 @@
         const yearStart = new Date(yesterday.getFullYear(), 0, 1);
 
         const lifeLatest = rides.reduce((sum, ride) => sum + Number(ride.distanceKm || 0), 0);
+        const lifeRideSeconds = rides.reduce(
+          (sum, ride) => sum + Number(ride.elapsedSeconds || 0),
+          0
+        );
 
         const yesterdayRide = rides.find(ride => isSameDate(ride.date, yesterday));
 
@@ -581,6 +683,10 @@
         const yearRides = rides.filter(ride => isBetween(ride.date, yearStart, yesterday));
 
         updateDistance('life-latest', lifeLatest);
+        document.getElementById('life-ride-time').textContent =
+        　formatRideTime(lifeRideSeconds);
+        
+        renderLatest15Chart(rides);
 
         updateDistance('yesterday-distance', yesterdayRide ? yesterdayRide.distanceKm : 0);
         updateMax('yesterday-max', yesterdayRide ? yesterdayRide.maxSpeedKmh : 0);
@@ -663,6 +769,57 @@ function updateSideBgParallax() {
 
   const scrollY = window.scrollY || window.pageYOffset;
   sideBg.style.transform = `translateY(${scrollY * 0.75}px)`;
+}
+
+function renderLatest15Chart(rides) {
+  const chart = document.getElementById('latest-15-chart');
+  if (!chart) return;
+
+  const latest15 = rides.slice(-15);
+  const maxDistance = Math.max(
+    ...latest15.map(ride => Number(ride.distanceKm || 0)),
+    1
+  );
+
+  const maxIndex = latest15.findIndex(
+    ride => Number(ride.distanceKm || 0) === maxDistance
+  );
+
+  chart.innerHTML = latest15.map((ride, index) => {
+    const distance = Number(ride.distanceKm || 0);
+    const height = distance === 0 ? 2 : Math.max((distance / maxDistance) * 100, 6);
+
+    const showDate =
+      index === 0 ||
+      index === Math.floor(latest15.length / 2) ||
+      index === latest15.length - 1;
+
+    const dateLabel = formatChartDate(ride.date);
+    const valueLabel = `${formatValue(distance)} km`;
+
+    return `
+      <div class="chart-day">
+        ${index === maxIndex ? `<div class="chart-value">${valueLabel}</div>` : ''}
+        <div class="chart-bar" style="height: ${height}%"></div>
+        ${showDate ? `<div class="chart-date">${dateLabel}</div>` : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+function formatChartDate(dateString) {
+  const d = parseDate(dateString);
+  return `${d.getMonth() + 1}/${d.getDate()}`;
+}
+
+function formatRideTime(totalSeconds) {
+  const seconds = Number(totalSeconds || 0);
+
+  const days = Math.floor(seconds / 86400);
+  const hours = Math.floor((seconds % 86400) / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+
+  return `${days}d ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
 }
 
 window.addEventListener('scroll', updateSideBgParallax);
