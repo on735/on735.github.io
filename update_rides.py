@@ -31,6 +31,7 @@ for activity in activities:
     distance_km = activity.get("distance", 0) / 1000
     max_speed_kmh = activity.get("maxSpeed", 0) * 3.6
     avg_speed_kmh = activity.get("averageSpeed", 0) * 3.6
+    elapsed_seconds = activity.get("elapsedDuration", 0)
 
     if activity_date not in daily:
         daily[activity_date] = {
@@ -39,6 +40,7 @@ for activity in activities:
             "maxSpeedKmh": 0,
             "avgSpeedKmhTotal": 0,
             "activityCount": 0
+            "elapsedSeconds": 0
         }
 
     daily[activity_date]["distanceKm"] += distance_km
@@ -48,6 +50,7 @@ for activity in activities:
     )
     daily[activity_date]["avgSpeedKmhTotal"] += avg_speed_kmh
     daily[activity_date]["activityCount"] += 1
+    daily[activity_date]["elapsedSeconds"] += elapsed_seconds
 
 if len(daily) == 0:
     raise Exception("No ride data found. Stop update to avoid overwriting rides.json.")
@@ -65,6 +68,7 @@ while current_day <= end_date:
             "maxSpeedKmh": 0,
             "avgSpeedKmhTotal": 0,
             "activityCount": 0
+            "elapsedSeconds": 0
         }
 
     current_day += timedelta(days=1)
@@ -83,6 +87,7 @@ for item in daily.values():
         "distanceKm": round(item["distanceKm"], 2),
         "maxSpeedKmh": round(item["maxSpeedKmh"], 1),
         "avgSpeedKmh": round(avg_speed, 1)
+        "elapsedSeconds": round(item["elapsedSeconds"])
     })
 
 rides.sort(key=lambda x: x["date"])
