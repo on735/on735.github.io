@@ -143,8 +143,11 @@
       width: 100%;
       height: 1px;
       margin: 16px 0 24px;
-      background: var(--secondary);
-      opacity: 1;
+      background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 1)
+      );
     }
 
     .odo-wrapper {
@@ -196,7 +199,11 @@
       width: 100%;
       height: 1px;
       margin: 16px 0 24px;
-      background: var(--secondary);
+      background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 1)
+      );
     }
     
     .chart-bars {
@@ -269,8 +276,11 @@
       width: 100%;
       height: 1px;
       margin: 2px 0 8px;
-      background: var(--secondary);
-      opacity: 1;
+      background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 1)
+      );
     }
 
     .metric {
@@ -528,13 +538,13 @@
       <div class="section-line"></div>
 
       <div class="odo-wrapper">
-        <div class="label">Total Distance</div>
+        <div class="label">Total distance</div>
         <div class="odo" id="life-latest">0</div>
         <div class="unit">km</div>
       </div>
       
       <div class="ride-time-wrapper">
-        <div class="label">Ride Time</div>
+        <div class="label">Total ride time</div>
         <div class="ride-time" id="life-ride-time">0d 00:00</div>
       </div>
       
@@ -562,7 +572,7 @@
         </div>
 
         <div class="card">
-          <h2>This Week</h2>
+          <h2>This week</h2>
           <div class="card-line"></div>
           <div class="metric">
             <span class="metric-label">Distance</span>
@@ -577,7 +587,7 @@
         </div>
 
         <div class="card">
-          <h2>This Month</h2>
+          <h2>This month</h2>
           <div class="card-line"></div>
           <div class="metric">
             <span class="metric-label">Distance</span>
@@ -592,7 +602,7 @@
         </div>
 
         <div class="card">
-          <h2>This Year</h2>
+          <h2>This year</h2>
           <div class="card-line"></div>
           <div class="metric">
             <span class="metric-label">Distance</span>
