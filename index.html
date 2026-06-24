@@ -180,6 +180,32 @@
       line-height: 1;
       letter-spacing: -0.06em;
     }
+    
+    .latest-chart {
+      margin-top: 56px;
+    }
+    
+    .chart-title {
+      margin: 0 0 16px;
+      text-align: right;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    
+    .chart-bars {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 6px;
+      height: 120px;
+    }
+    
+    .chart-bar {
+      flex: 1;
+      min-width: 0;
+      background: var(--primary);
+      opacity: 1;
+    }
 
     .unit {
       margin-top: -4px;
@@ -474,6 +500,11 @@
         <div class="label">Ride Time</div>
         <div class="ride-time" id="life-ride-time">0d 00:00</div>
       </div>
+      
+      <div class="latest-chart">
+        <h3 class="chart-title">Latest 15 days</h3>
+        <div class="chart-bars" id="latest-15-chart"></div>
+      </div>
 
       <div class="cards">
 
@@ -603,6 +634,8 @@
         updateDistance('life-latest', lifeLatest);
         document.getElementById('life-ride-time').textContent =
         　formatRideTime(lifeRideSeconds);
+        
+        renderLatest15Chart(rides);
 
         updateDistance('yesterday-distance', yesterdayRide ? yesterdayRide.distanceKm : 0);
         updateMax('yesterday-max', yesterdayRide ? yesterdayRide.maxSpeedKmh : 0);
@@ -685,6 +718,24 @@ function updateSideBgParallax() {
 
   const scrollY = window.scrollY || window.pageYOffset;
   sideBg.style.transform = `translateY(${scrollY * 0.75}px)`;
+}
+
+function renderLatest15Chart(rides) {
+  const chart = document.getElementById('latest-15-chart');
+  if (!chart) return;
+
+  const latest15 = rides.slice(-15);
+  const maxDistance = Math.max(
+    ...latest15.map(ride => Number(ride.distanceKm || 0)),
+    1
+  );
+
+  chart.innerHTML = latest15.map(ride => {
+    const distance = Number(ride.distanceKm || 0);
+    const height = distance === 0 ? 2 : Math.max((distance / maxDistance) * 100, 6);
+
+    return `<div class="chart-bar" style="height: ${height}%"></div>`;
+  }).join('');
 }
 
 function formatRideTime(totalSeconds) {
