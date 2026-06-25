@@ -39,7 +39,7 @@ for activity in activities:
             "distanceKm": 0,
             "maxSpeedKmh": 0,
             "avgSpeedKmhTotal": 0,
-            "activityCount": 0
+            "activityCount": 0,
             "elapsedSeconds": 0
         }
 
