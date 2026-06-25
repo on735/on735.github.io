@@ -1,23 +1,40 @@
 {
-  "updatedAt": "2026-06-23T07:35:00+09:00",
+  "updatedAt": "2026-06-25T07:35:00+09:00",
   "rides": [
     {
       "date": "2026-06-21",
       "distanceKm": 2.67,
       "maxSpeedKmh": 17.9,
-      "avgSpeedKmh": 11.2
+      "avgSpeedKmh": 11.2,
+      "elapsedSeconds": 1080
     },
     {
       "date": "2026-06-22",
       "distanceKm": 3.71,
       "maxSpeedKmh": 32.8,
-      "avgSpeedKmh": 10.9
+      "avgSpeedKmh": 10.9,
+      "elapsedSeconds": 1020
     },
     {
       "date": "2026-06-23",
       "distanceKm": 4.77,
       "maxSpeedKmh": 40.8,
-      "avgSpeedKmh": 12.6
+      "avgSpeedKmh": 12.6,
+      "elapsedSeconds": 1530
+    },
+    {
+      "date": "2026-06-24",
+      "distanceKm": 10.3,
+      "maxSpeedKmh": 34.8,
+      "avgSpeedKmh": 14.8,
+      "elapsedSeconds": 2790
+    },
+    {
+      "date": "2026-06-25",
+      "distanceKm": 0,
+      "maxSpeedKmh": 0,
+      "avgSpeedKmh": 0,
+      "elapsedSeconds": 0
     }
   ]
 }
