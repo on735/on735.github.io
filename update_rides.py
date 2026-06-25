@@ -86,7 +86,7 @@ for item in daily.values():
         "date": item["date"],
         "distanceKm": round(item["distanceKm"], 2),
         "maxSpeedKmh": round(item["maxSpeedKmh"], 1),
-        "avgSpeedKmh": round(avg_speed, 1)
+        "avgSpeedKmh": round(avg_speed, 1),
         "elapsedSeconds": round(item["elapsedSeconds"])
     })
 
