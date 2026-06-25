@@ -67,7 +67,7 @@ while current_day <= end_date:
             "distanceKm": 0,
             "maxSpeedKmh": 0,
             "avgSpeedKmhTotal": 0,
-            "activityCount": 0
+            "activityCount": 0,
             "elapsedSeconds": 0
         }
 
