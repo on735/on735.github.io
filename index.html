@@ -907,8 +907,23 @@ function renderLatest15SpeedChart(rides) {
         </linearGradient>
       </defs>
 
-      <polyline points="${maxLine}" fill="none" stroke="url(#maxSpeedGradient)" stroke-width="2" vector-effect="non-scaling-stroke" />
-      <polyline points="${avgLine}" fill="none" stroke="url(#avgSpeedGradient)" stroke-width="2" vector-effect="non-scaling-stroke" />
+      <polyline
+      　points="${maxLine}"
+      　fill="none"
+      　stroke="url(#maxSpeedGradient)"
+      　stroke-width="4"
+      　stroke-linecap="round"
+      　stroke-linejoin="round"
+      />
+      
+      <polyline
+      　points="${avgLine}"
+      　fill="none"
+      　stroke="url(#avgSpeedGradient)"
+      　stroke-width="4"
+      　stroke-linecap="round"
+      　stroke-linejoin="round"
+      />
     </svg>
 
     ${points.map((point, index) => {
