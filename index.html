@@ -740,6 +740,7 @@
         　formatRideTime(lifeRideSeconds);
         
         renderLatest15Chart(rides);
+        renderLatest15SpeedChart(rides);
 
         updateDistance('yesterday-distance', yesterdayRide ? yesterdayRide.distanceKm : 0);
         updateMax('yesterday-max', yesterdayRide ? yesterdayRide.maxSpeedKmh : 0);
