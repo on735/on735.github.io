@@ -207,57 +207,105 @@
       );
     }
     
-    .chart-bars {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 6px;
-      height: 120px;
-      margin-top: 44px;
-      margin-bottom: 44px;
-    }
-    
-    .chart-day {
-      flex: 1;
-      min-width: 0;
-      height: 100%;
-      position: relative;
-      display: flex;
-      align-items: flex-end;
-    }
-    
-    .chart-bar {
-      width: 100%;
-      background: linear-gradient(
-      to right,
-      rgba(var(--primary-rgb), 0.5),
-      rgba(var(--primary-rgb), 1)
-      );
-    }
-    
-    .chart-value {
-      position: absolute;
-      bottom: calc(100% + 6px);
-      left: 50%;
-      transform: translateX(-50%);
-      color: var(--secondary);
-      font-size: 10px;
-      line-height: 1;
-      white-space: nowrap;
-      opacity: 0.735;
-    }
-    
-    .chart-date {
-      position: absolute;
-      top: calc(100% + 6px);
-      left: 50%;
-      transform: translateX(-50%);
-      color: var(--secondary);
-      font-size: 10px;
-      line-height: 1;
-      white-space: nowrap;
-      opacity: 0.735;
-    }
+    .chart-subtitle {
+  margin: 0 0 16px;
+  text-align: right;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.chart-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 6px;
+  height: 120px;
+  margin-top: 28px;
+}
+
+.chart-day {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+
+.chart-bar {
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(var(--primary-rgb), 0.735),
+    rgba(var(--primary-rgb), 1)
+  );
+}
+
+.chart-bar.is-zero {
+  height: 1px !important;
+  background: linear-gradient(
+    to right,
+    rgba(69, 69, 69, 0.735),
+    rgba(69, 69, 69, 1)
+  );
+}
+
+.chart-value,
+.speed-value {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--secondary);
+  font-size: 10px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.chart-date,
+.speed-date {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--secondary);
+  font-size: 10px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.speed-chart-title {
+  margin-top: 56px;
+}
+
+.speed-chart {
+  position: relative;
+  height: 120px;
+  margin-top: 28px;
+}
+
+.speed-chart svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.speed-point {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.speed-point.max {
+  background: var(--primary);
+}
+
+.speed-point.avg {
+  background: #ffff00;
+}
 
     .unit {
       margin-top: -4px;
@@ -560,7 +608,12 @@
       <div class="latest-chart">
         <h3 class="chart-title">Latest 15 days</h3>
         <div class="chart-line"></div>
+        
+        <h4 class="chart-subtitle">Ride distance</h4>
         <div class="chart-bars" id="latest-15-chart"></div>
+        
+        <h4 class="chart-subtitle speed-chart-title">Max / Avg speed</h4>
+        <div class="speed-chart" id="latest-15-speed-chart"></div>
       </div>
 
       <div class="cards">
@@ -805,6 +858,71 @@ function renderLatest15Chart(rides) {
       </div>
     `;
   }).join('');
+}
+
+function renderLatest15SpeedChart(rides) {
+  const chart = document.getElementById('latest-15-speed-chart');
+  if (!chart) return;
+
+  const latest15 = rides.slice(-15);
+  const width = 100;
+  const height = 120;
+
+  const maxSpeedValue = Math.max(
+    ...latest15.map(ride => Number(ride.maxSpeedKmh || 0)),
+    ...latest15.map(ride => Number(ride.avgSpeedKmh || 0)),
+    1
+  );
+
+  const points = latest15.map((ride, index) => {
+    const x = latest15.length === 1 ? 50 : (index / (latest15.length - 1)) * width;
+    const maxY = height - (Number(ride.maxSpeedKmh || 0) / maxSpeedValue) * height;
+    const avgY = height - (Number(ride.avgSpeedKmh || 0) / maxSpeedValue) * height;
+
+    return {
+      x,
+      maxY,
+      avgY,
+      maxSpeed: Number(ride.maxSpeedKmh || 0),
+      avgSpeed: Number(ride.avgSpeedKmh || 0),
+      date: ride.date
+    };
+  });
+
+  const maxIndex = points.findIndex(point => point.maxSpeed === Math.max(...points.map(p => p.maxSpeed)));
+
+  const maxLine = points.map(point => `${point.x},${point.maxY}`).join(' ');
+  const avgLine = points.map(point => `${point.x},${point.avgY}`).join(' ');
+
+  chart.innerHTML = `
+    <svg viewBox="0 0 ${width} ${height}" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="maxSpeedGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="rgb(126, 61, 229)" stop-opacity="0.735" />
+          <stop offset="100%" stop-color="rgb(126, 61, 229)" stop-opacity="1" />
+        </linearGradient>
+        <linearGradient id="avgSpeedGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#ffff00" stop-opacity="0.735" />
+          <stop offset="100%" stop-color="#ffff00" stop-opacity="1" />
+        </linearGradient>
+      </defs>
+
+      <polyline points="${maxLine}" fill="none" stroke="url(#maxSpeedGradient)" stroke-width="2" vector-effect="non-scaling-stroke" />
+      <polyline points="${avgLine}" fill="none" stroke="url(#avgSpeedGradient)" stroke-width="2" vector-effect="non-scaling-stroke" />
+    </svg>
+
+    ${points.map((point, index) => {
+      const showDate =
+        index === 0 ||
+        index === Math.floor(points.length / 2) ||
+        index === points.length - 1;
+
+      return `
+        ${index === maxIndex ? `<div class="speed-value" style="left:${point.x}%; top:${point.maxY}px;">${formatValue(point.maxSpeed)} km/h</div>` : ''}
+        ${showDate ? `<div class="speed-date" style="left:${point.x}%; top:100%;">${formatChartDate(point.date)}</div>` : ''}
+      `;
+    }).join('')}
+  `;
 }
 
 function formatChartDate(dateString) {
