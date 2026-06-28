@@ -854,7 +854,7 @@ function renderLatest15Chart(rides) {
     return `
       <div class="chart-day">
         ${index === maxIndex ? `<div class="chart-value">${valueLabel}</div>` : ''}
-        <div class="chart-bar" style="height: ${height}%"></div>
+        <div class="chart-bar ${distance === 0 ? 'is-zero' : ''}" style="height: ${height}%"></div>
         ${showDate ? `<div class="chart-date">${dateLabel}</div>` : ''}
       </div>
     `;
@@ -908,12 +908,12 @@ function renderLatest15SpeedChart(rides) {
     <svg viewBox="0 0 ${width} ${height}" preserveAspectRatio="none">
       <defs>
         <linearGradient id="maxSpeedGradient" x1="0" y1="0" x2="${width}" y2="0" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="rgb(126, 61, 229)" stop-opacity="0.735" />
+          <stop offset="0%" stop-color="rgb(126, 61, 229)" stop-opacity="0.4" />
           <stop offset="100%" stop-color="rgb(126, 61, 229)" stop-opacity="1" />
         </linearGradient>
 
         <linearGradient id="avgSpeedGradient" x1="0" y1="0" x2="${width}" y2="0" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="#ffff00" stop-opacity="0.735" />
+          <stop offset="0%" stop-color="#ffff00" stop-opacity="0.4" />
           <stop offset="100%" stop-color="#ffff00" stop-opacity="1" />
         </linearGradient>
       </defs>
@@ -922,7 +922,7 @@ function renderLatest15SpeedChart(rides) {
         points="${maxLine}"
         fill="none"
         stroke="url(#maxSpeedGradient)"
-        stroke-width="4"
+        stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
         vector-effect="non-scaling-stroke"
@@ -932,7 +932,7 @@ function renderLatest15SpeedChart(rides) {
         points="${avgLine}"
         fill="none"
         stroke="url(#avgSpeedGradient)"
-        stroke-width="4"
+        stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
         vector-effect="non-scaling-stroke"
