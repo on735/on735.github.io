@@ -254,9 +254,7 @@
 .chart-value,
 .speed-value {
   position: absolute;
-  bottom: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -100%);
   color: var(--secondary);
   font-size: 10px;
   line-height: 1;
@@ -948,7 +946,7 @@ function renderLatest15SpeedChart(rides) {
         index === points.length - 1;
 
       return `
-        ${index === maxIndex ? `<div class="speed-value" style="left:${point.x}%; top:${point.maxY}px;">${formatValue(point.maxSpeed)} km/h</div>` : ''}
+        ${index === maxIndex ? `<div class="speed-value" style="left:${point.x}%; top:${point.maxY - 6}px;">${formatValue(point.maxSpeed)} km/h</div>` : ''}
         ${showDate ? `<div class="speed-date" style="left:${point.x}%; top:100%;">${formatChartDate(point.date)}</div>` : ''}
       `;
     }).join('')}
