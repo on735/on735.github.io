@@ -1010,7 +1010,7 @@ function renderLongTermScatter(rides) {
 
   const validRides = rides.filter(ride => Number(ride.distanceKm || 0) > 0);
 
-  const width = 100;
+  const width = 720;
   const height = 240;
 
   const paddingLeft = 8;
@@ -1054,7 +1054,7 @@ function renderLongTermScatter(rides) {
   const yTicks = [10, 20, 30];
 
   chart.innerHTML = `
-    <svg viewBox="0 0 ${width} ${height}" preserveAspectRatio="none">
+    <svg viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMidYMid meet">
       <defs>
         <linearGradient id="scatterYAxisGradient" x1="0" y1="1" x2="0" y2="0">
           <stop offset="0%" stop-color="white" stop-opacity="0.3" />
