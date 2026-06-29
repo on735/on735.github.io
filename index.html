@@ -338,8 +338,8 @@
 
 .scatter-label {
   position: absolute;
+  top: 8px;
   right: 0;
-  bottom: -20px;
   color: rgba(255, 255, 255, 0.735);
   font-size: 10px;
   line-height: 1;
@@ -1012,42 +1012,150 @@ function renderLongTermScatter(rides) {
 
   const width = 100;
   const height = 240;
+
+  const paddingLeft = 8;
+  const paddingRight = 4;
+  const paddingTop = 12;
+  const paddingBottom = 18;
+
+  const plotWidth = width - paddingLeft - paddingRight;
+  const plotHeight = height - paddingTop - paddingBottom;
+
   const maxDistance = 48;
-  const maxAvgSpeed = 42;
+  const maxAvgSpeed = 32;
 
   if (!validRides.length) {
     chart.innerHTML = '';
     return;
   }
 
-  const points = validRides.map((ride, index) => {
-    const distance = Math.min(Number(ride.distanceKm || 0), maxDistance);
-    const avgSpeed = Math.min(Number(ride.avgSpeedKmh || 0), maxAvgSpeed);
+  const xScale = value =>
+    paddingLeft + (Math.min(value, maxDistance) / maxDistance) * plotWidth;
 
-    const x = (distance / maxDistance) * width;
-    const y = height - (avgSpeed / maxAvgSpeed) * height;
+  const yScale = value =>
+    paddingTop + plotHeight - (Math.min(value, maxAvgSpeed) / maxAvgSpeed) * plotHeight;
+
+  const points = validRides.map((ride, index) => {
+    const distance = Number(ride.distanceKm || 0);
+    const avgSpeed = Number(ride.avgSpeedKmh || 0);
 
     const opacity = validRides.length === 1
       ? 0.9
       : 0.1 + (index / (validRides.length - 1)) * 0.8;
 
-    return { x, y, opacity };
+    return {
+      x: xScale(distance),
+      y: yScale(avgSpeed),
+      opacity
+    };
   });
+
+  const xTicks = [15, 30, 45];
+  const yTicks = [10, 20, 30];
 
   chart.innerHTML = `
     <svg viewBox="0 0 ${width} ${height}" preserveAspectRatio="none">
-      <line x1="0" y1="${height}" x2="${width}" y2="${height}" stroke="white" stroke-width="1" vector-effect="non-scaling-stroke" />
-      <line x1="0" y1="0" x2="0" y2="${height}" stroke="white" stroke-width="1" vector-effect="non-scaling-stroke" />
+      <defs>
+        <linearGradient id="scatterYAxisGradient" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stop-color="white" stop-opacity="0.3" />
+          <stop offset="100%" stop-color="white" stop-opacity="1" />
+        </linearGradient>
 
-      ${[15, 30, 45].map(value => {
-        const x = (value / maxDistance) * width;
-        return `<line x1="${x}" y1="0" x2="${x}" y2="${height}" stroke="rgba(255,255,255,0.3)" stroke-dasharray="3 3" stroke-width="1" vector-effect="non-scaling-stroke" />`;
+        <linearGradient id="scatterXAxisGradient" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="white" stop-opacity="0.3" />
+          <stop offset="100%" stop-color="white" stop-opacity="1" />
+        </linearGradient>
+      </defs>
+
+      <line
+        x1="${paddingLeft}"
+        y1="${paddingTop}"
+        x2="${paddingLeft}"
+        y2="${paddingTop + plotHeight}"
+        stroke="url(#scatterYAxisGradient)"
+        stroke-width="1"
+        vector-effect="non-scaling-stroke"
+      />
+
+      <line
+        x1="${paddingLeft}"
+        y1="${paddingTop + plotHeight}"
+        x2="${paddingLeft + plotWidth}"
+        y2="${paddingTop + plotHeight}"
+        stroke="url(#scatterXAxisGradient)"
+        stroke-width="1"
+        vector-effect="non-scaling-stroke"
+      />
+
+      ${yTicks.map(value => {
+        const y = yScale(value);
+        return `
+          <line
+            x1="${paddingLeft}"
+            y1="${y}"
+            x2="${paddingLeft + plotWidth}"
+            y2="${y}"
+            stroke="rgba(255,255,255,0.3)"
+            stroke-dasharray="3 3"
+            stroke-width="1"
+            vector-effect="non-scaling-stroke"
+          />
+          <text
+            x="${paddingLeft - 3}"
+            y="${y + 1}"
+            text-anchor="end"
+            fill="white"
+            font-size="3"
+          >${value}</text>
+        `;
       }).join('')}
 
-      ${[20, 40].map(value => {
-        const y = height - (value / maxAvgSpeed) * height;
-        return `<line x1="0" y1="${y}" x2="${width}" y2="${y}" stroke="rgba(255,255,255,0.3)" stroke-dasharray="3 3" stroke-width="1" vector-effect="non-scaling-stroke" />`;
+      ${xTicks.map(value => {
+        const x = xScale(value);
+        return `
+          <line
+            x1="${x}"
+            y1="${paddingTop}"
+            x2="${x}"
+            y2="${paddingTop + plotHeight}"
+            stroke="rgba(255,255,255,0.3)"
+            stroke-dasharray="3 3"
+            stroke-width="1"
+            vector-effect="non-scaling-stroke"
+          />
+          <text
+            x="${x}"
+            y="${paddingTop + plotHeight + 7}"
+            text-anchor="middle"
+            fill="white"
+            font-size="3"
+          >${value}</text>
+        `;
       }).join('')}
+
+      <text
+        x="${paddingLeft - 3}"
+        y="${paddingTop + plotHeight + 7}"
+        text-anchor="end"
+        fill="white"
+        font-size="3"
+      >0</text>
+
+      <text
+        x="${paddingLeft - 5}"
+        y="${paddingTop - 4}"
+        text-anchor="end"
+        fill="white"
+        font-size="3"
+      >(km/h)</text>
+
+      <text
+        x="${paddingLeft + plotWidth}"
+        y="${paddingTop + plotHeight + 13}"
+        text-anchor="end"
+        fill="white"
+        font-size="3"
+      >(km)</text>
 
       ${points.map(point => `
         <circle
@@ -1056,7 +1164,6 @@ function renderLongTermScatter(rides) {
           r="1.5"
           fill="#ffff00"
           opacity="${point.opacity}"
-          vector-effect="non-scaling-stroke"
         />
       `).join('')}
     </svg>
