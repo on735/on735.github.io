@@ -1013,10 +1013,12 @@ function renderLongTermScatter(rides) {
   const width = 720;
   const height = 240;
 
-  const paddingLeft = 8;
-  const paddingRight = 4;
-  const paddingTop = 12;
-  const paddingBottom = 18;
+  const paddingLeft = 60;
+  const paddingRight = 28;
+  const paddingTop = 28;
+  const paddingBottom = 36;
+
+  const fontSize = 14;
 
   const plotWidth = width - paddingLeft - paddingRight;
   const plotHeight = height - paddingTop - paddingBottom;
@@ -1073,7 +1075,7 @@ function renderLongTermScatter(rides) {
         x2="${paddingLeft}"
         y2="${paddingTop + plotHeight}"
         stroke="url(#scatterYAxisGradient)"
-        stroke-width="1"
+        stroke-width="2"
         vector-effect="non-scaling-stroke"
       />
 
@@ -1083,7 +1085,7 @@ function renderLongTermScatter(rides) {
         x2="${paddingLeft + plotWidth}"
         y2="${paddingTop + plotHeight}"
         stroke="url(#scatterXAxisGradient)"
-        stroke-width="1"
+        stroke-width="2"
         vector-effect="non-scaling-stroke"
       />
 
@@ -1105,7 +1107,7 @@ function renderLongTermScatter(rides) {
             y="${y + 1}"
             text-anchor="end"
             fill="white"
-            font-size="3"
+            font-size="${fontSize}"
           >${value}</text>
         `;
       }).join('')}
@@ -1128,33 +1130,33 @@ function renderLongTermScatter(rides) {
             y="${paddingTop + plotHeight + 7}"
             text-anchor="middle"
             fill="white"
-            font-size="3"
+            font-size="${fontSize}"
           >${value}</text>
         `;
       }).join('')}
 
       <text
-        x="${paddingLeft - 3}"
-        y="${paddingTop + plotHeight + 7}"
+        x="${paddingLeft - 10}"
+        y="${paddingTop + plotHeight + 18}"
         text-anchor="end"
         fill="white"
-        font-size="3"
+        font-size="${fontSize}"
       >0</text>
 
       <text
-        x="${paddingLeft - 5}"
-        y="${paddingTop - 4}"
-        text-anchor="end"
+        x="${paddingLeft}"
+        y="${paddingTop - 14}"
+        text-anchor="middle"
         fill="white"
-        font-size="3"
+        font-size="${fontSize}"
       >(km/h)</text>
 
       <text
         x="${paddingLeft + plotWidth}"
-        y="${paddingTop + plotHeight + 13}"
+        y="${paddingTop + plotHeight + 28}"
         text-anchor="end"
         fill="white"
-        font-size="3"
+        font-size="${fontSize}"
       >(km)</text>
 
       ${points.map(point => `
