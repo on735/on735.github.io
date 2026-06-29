@@ -318,6 +318,33 @@
   background: #ffff00;
 }
 
+.long-term-chart {
+  margin-top: 72px;
+}
+
+.scatter-chart {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  margin-top: 28px;
+}
+
+.scatter-chart svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.scatter-label {
+  position: absolute;
+  right: 0;
+  bottom: -20px;
+  color: rgba(255, 255, 255, 0.735);
+  font-size: 10px;
+  line-height: 1;
+}
+
     .unit {
       margin-top: -4px;
       font-size: 18px;
@@ -617,7 +644,7 @@
       </div>
       
       <div class="latest-chart">
-        <h3 class="chart-title">Latest 15 days</h3>
+        <h3 class="chart-title">Short-term trend</h3>
         <div class="chart-line"></div>
         
         <h4 class="section-label">Ride distance</h4>
@@ -625,6 +652,14 @@
         
         <h4 class="section-label speed-chart-title">Max / Avg speed</h4>
         <div class="speed-chart" id="latest-15-speed-chart"></div>
+      </div>
+      
+      <div class="long-term-chart">
+        <h3 class="chart-title">Long-term trend</h3>
+        <div class="chart-line"></div>
+        
+        <h4 class="section-label">Ride distance × Avg speed</h4>
+        <div class="scatter-chart" id="long-term-scatter"></div>
       </div>
 
       <div class="cards">
@@ -752,6 +787,7 @@
         
         renderLatest15Chart(rides);
         renderLatest15SpeedChart(rides);
+        renderLongTermScatter(rides);
 
         updateDistance('yesterday-distance', yesterdayRide ? yesterdayRide.distanceKm : 0);
         updateMax('yesterday-max', yesterdayRide ? yesterdayRide.maxSpeedKmh : 0);
@@ -965,6 +1001,67 @@ function renderLatest15SpeedChart(rides) {
       　${showDate ? `<div class="speed-date" style="left:${point.x}%; top:100%;">${formatChartDate(point.date)}</div>` : ''}
       `;
     }).join('')}
+  `;
+}
+
+function renderLongTermScatter(rides) {
+  const chart = document.getElementById('long-term-scatter');
+  if (!chart) return;
+
+  const validRides = rides.filter(ride => Number(ride.distanceKm || 0) > 0);
+
+  const width = 100;
+  const height = 240;
+  const maxDistance = 48;
+  const maxAvgSpeed = 42;
+
+  if (!validRides.length) {
+    chart.innerHTML = '';
+    return;
+  }
+
+  const points = validRides.map((ride, index) => {
+    const distance = Math.min(Number(ride.distanceKm || 0), maxDistance);
+    const avgSpeed = Math.min(Number(ride.avgSpeedKmh || 0), maxAvgSpeed);
+
+    const x = (distance / maxDistance) * width;
+    const y = height - (avgSpeed / maxAvgSpeed) * height;
+
+    const opacity = validRides.length === 1
+      ? 0.9
+      : 0.1 + (index / (validRides.length - 1)) * 0.8;
+
+    return { x, y, opacity };
+  });
+
+  chart.innerHTML = `
+    <svg viewBox="0 0 ${width} ${height}" preserveAspectRatio="none">
+      <line x1="0" y1="${height}" x2="${width}" y2="${height}" stroke="white" stroke-width="1" vector-effect="non-scaling-stroke" />
+      <line x1="0" y1="0" x2="0" y2="${height}" stroke="white" stroke-width="1" vector-effect="non-scaling-stroke" />
+
+      ${[15, 30, 45].map(value => {
+        const x = (value / maxDistance) * width;
+        return `<line x1="${x}" y1="0" x2="${x}" y2="${height}" stroke="rgba(255,255,255,0.3)" stroke-dasharray="3 3" stroke-width="1" vector-effect="non-scaling-stroke" />`;
+      }).join('')}
+
+      ${[20, 40].map(value => {
+        const y = height - (value / maxAvgSpeed) * height;
+        return `<line x1="0" y1="${y}" x2="${width}" y2="${y}" stroke="rgba(255,255,255,0.3)" stroke-dasharray="3 3" stroke-width="1" vector-effect="non-scaling-stroke" />`;
+      }).join('')}
+
+      ${points.map(point => `
+        <circle
+          cx="${point.x}"
+          cy="${point.y}"
+          r="1.5"
+          fill="#ffff00"
+          opacity="${point.opacity}"
+          vector-effect="non-scaling-stroke"
+        />
+      `).join('')}
+    </svg>
+
+    <div class="scatter-label">All rides</div>
   `;
 }
 
