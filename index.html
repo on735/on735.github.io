@@ -163,6 +163,14 @@
       letter-spacing: -0.01em;
       opacity: 0.735;
     }
+    
+    .section-label {
+      margin: 0 0 16px;
+      text-align: right;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--secondary);
+    }
 
     .odo {
       color: var(--primary);
@@ -206,14 +214,6 @@
       rgba(255, 255, 255, 1)
       );
     }
-    
-    .chart-subtitle {
-  margin: 0 0 16px;
-  text-align: right;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--secondary);
-}
 
 .chart-bars {
   display: flex;
@@ -606,13 +606,13 @@
       <div class="section-line"></div>
 
       <div class="odo-wrapper">
-        <div class="label">Total distance</div>
+        <h4 class="section-label">Total ride distance</h4>
         <div class="odo" id="life-latest">0</div>
         <div class="unit">km</div>
       </div>
       
       <div class="ride-time-wrapper">
-        <div class="label">Total ride time</div>
+        <h4 class="section-label">Total ride time</h4>
         <div class="ride-time" id="life-ride-time">0d 00:00</div>
       </div>
       
@@ -620,10 +620,10 @@
         <h3 class="chart-title">Latest 15 days</h3>
         <div class="chart-line"></div>
         
-        <h4 class="chart-subtitle">Ride distance</h4>
+        <h4 class="section-label">Ride distance</h4>
         <div class="chart-bars" id="latest-15-chart"></div>
         
-        <h4 class="chart-subtitle speed-chart-title">Max / Avg speed</h4>
+        <h4 class="section-label speed-chart-title">Max / Avg speed</h4>
         <div class="speed-chart" id="latest-15-speed-chart"></div>
       </div>
 
