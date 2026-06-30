@@ -66,10 +66,10 @@
     },
     {
       "date": "2026-06-30",
-      "distanceKm": 3.5,
-      "maxSpeedKmh": 32.8,
-      "avgSpeedKmh": 17.7,
-      "elapsedSeconds": 810
+      "distanceKm": 6.99,
+      "maxSpeedKmh": 40.8,
+      "avgSpeedKmh": 16.6,
+      "elapsedSeconds": 1620
     }
   ]
 }
