@@ -966,6 +966,16 @@ function renderLatest15SpeedChart(rides) {
           <stop offset="0%" stop-color="#ffff00" stop-opacity="0.4" />
           <stop offset="100%" stop-color="#ffff00" stop-opacity="1" />
         </linearGradient>
+        
+        <linearGradient id="scatterYAxisGradient" x1="0" y1="1" x2="0" y2="0">
+        　<stop offset="0%" stop-color="white" stop-opacity="0.3" />
+        　<stop offset="100%" stop-color="white" stop-opacity="1" />
+        </linearGradient>
+        
+        <linearGradient id="scatterXAxisGradient" x1="0" y1="0" x2="1" y2="0">
+        　<stop offset="0%" stop-color="white" stop-opacity="0.3" />
+        　<stop offset="100%" stop-color="white" stop-opacity="1" />
+        </linearGradient>
       </defs>
 
       <polyline
@@ -1068,6 +1078,26 @@ function renderLongTermScatter(rides) {
           <stop offset="100%" stop-color="white" stop-opacity="1" />
         </linearGradient>
       </defs>
+      
+      <line
+  x1="${paddingLeft}"
+  y1="${paddingTop}"
+  x2="${paddingLeft}"
+  y2="${paddingTop + plotHeight}"
+  stroke="url(#scatterYAxisGradient)"
+  stroke-width="1"
+  vector-effect="non-scaling-stroke"
+/>
+
+<line
+  x1="${paddingLeft}"
+  y1="${paddingTop + plotHeight}"
+  x2="${paddingLeft + plotWidth}"
+  y2="${paddingTop + plotHeight}"
+  stroke="url(#scatterXAxisGradient)"
+  stroke-width="1"
+  vector-effect="non-scaling-stroke"
+/>
 
       <line
         x1="${paddingLeft}"
@@ -1136,11 +1166,12 @@ function renderLongTermScatter(rides) {
       }).join('')}
 
       <text
-        x="${paddingLeft - 10}"
-        y="${paddingTop + plotHeight + 18}"
-        text-anchor="end"
-        fill="white"
-        font-size="${fontSize}"
+      　x="${paddingLeft - 12}"
+      　y="${paddingTop + plotHeight + 6}"
+      　text-anchor="end"
+      　dominant-baseline="middle"
+      　fill="white"
+      　font-size="${fontSize}"
       >0</text>
 
       <text
