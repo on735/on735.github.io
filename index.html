@@ -1189,6 +1189,34 @@ function renderLongTermScatter(rides) {
         fill="white"
         font-size="${fontSize}"
       >(km)</text>
+      
+      <line
+  x1="${paddingLeft}"
+  y1="${paddingTop}"
+  x2="${paddingLeft}"
+  y2="${paddingTop + plotHeight}"
+  stroke="white"
+  stroke-width="1"
+  vector-effect="non-scaling-stroke"
+/>
+
+<line
+  x1="${paddingLeft}"
+  y1="${paddingTop + plotHeight}"
+  x2="${paddingLeft + plotWidth}"
+  y2="${paddingTop + plotHeight}"
+  stroke="white"
+  stroke-width="1"
+  vector-effect="non-scaling-stroke"
+/>
+
+<text
+  x="${paddingLeft - 8}"
+  y="${paddingTop + plotHeight + 18}"
+  text-anchor="end"
+  fill="white"
+  font-size="${fontSize}"
+>0</text>
 
       ${points.map(point => `
         <circle
