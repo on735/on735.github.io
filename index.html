@@ -1020,7 +1020,7 @@ function renderLongTermScatter(rides) {
 
   const validRides = rides.filter(ride => Number(ride.distanceKm || 0) > 0);
 
-  const width = 480;
+  const width = 580;
   const height = 360;
 
   const paddingLeft = 60;
@@ -1133,7 +1133,7 @@ function renderLongTermScatter(rides) {
             vector-effect="non-scaling-stroke"
           />
           <text
-            x="${paddingLeft - 14}"
+            x="${paddingLeft - 10}"
             y="${y}"
             text-anchor="end"
             fill="white"
