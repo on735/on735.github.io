@@ -227,10 +227,10 @@
     },
     {
       "date": "2026-07-23",
-      "distanceKm": 7.37,
-      "maxSpeedKmh": 31.4,
-      "avgSpeedKmh": 16.2,
-      "elapsedSeconds": 1980
+      "distanceKm": 11.1,
+      "maxSpeedKmh": 39.7,
+      "avgSpeedKmh": 16.9,
+      "elapsedSeconds": 2760
     }
   ]
 }
