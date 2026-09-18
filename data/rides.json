@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-17T07:35:00+09:00",
+  "updatedAt": "2026-09-18T07:35:00+09:00",
   "rides": [
     {
       "date": "2026-06-21",
@@ -619,6 +619,13 @@
     },
     {
       "date": "2026-09-17",
+      "distanceKm": 2.87,
+      "maxSpeedKmh": 21.5,
+      "avgSpeedKmh": 10.9,
+      "elapsedSeconds": 900
+    },
+    {
+      "date": "2026-09-18",
       "distanceKm": 0,
       "maxSpeedKmh": 0,
       "avgSpeedKmh": 0,
